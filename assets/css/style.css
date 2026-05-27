@@ -1,0 +1,35 @@
+@import url(/assets/css/variables.css);
+@import url(/assets/css/reset.css);
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+    font-family: ver(--color-bg);
+}
+
+.main-header{
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-color: var(--color-bg);
+}
+.navbar .logo span {
+    font-size: 1.25rem;
+    font-weight: 700;
+     color: var(--color-text);
+}
+.content-wrap{
+max-width: 1360px;
+margin: 0 auto;
+padding: 0 20px;
+}
+
+@media (min-width: 1100px) {
+    .content-wrap{
+        padding: 0;
+    }
+}
