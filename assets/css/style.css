@@ -1,5 +1,4 @@
 @import url(/assets/css/variables.css);
-@import url(/assets/css/reset.css);
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -16,6 +15,9 @@ a{
 ul{
     list-style: none;
 }
+.d_none{
+    display: none;
+}
 .d_flex{
     display: flex;
     align-items: center;
@@ -27,7 +29,7 @@ ul{
     background-position: center;
     background-color: var(--color-bg);
 }
-.navbar{
+.navbar nav{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -45,41 +47,52 @@ margin: 0 auto;
 padding: 0 20px;
 }
 .btn_more {
-padding: 0px 14px;
-width: 110px;
-height: 20px;
+padding: 0px 20px;
+width: 160px;
+height: 30px;
 background: none repeat scroll 0% 0% transparent; 
+background-color: var(--color-button);
+border: none;
+border-radius: 20px;
 cursor: pointer;
 }
 .btn_more span {
- display: none;
- color: var(--color-text-button);   
+color: var( --color-text-button);
+font-size: 1rem;
+}
+.btn_more i {
+ color: var(--color-text-button);
+ font-size: 1rem;
 }
 .main_menu{
+display: flex;
 position: absolute;
-top: 60px;
-left: 0;
+top: 60px;  
+right: 1000px;
 height: calc(100vh - 60px);
 width: 100vw;
 flex-direction: column;
 justify-content: center;
 align-items: center;
 background-color: var(--color-bg);
+font-size: 2rem;
+color: var(--color-text);
+transition: left 0.3s ease-in-out;
 }
-.main_icon{
-display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  font-size: 1.5rem;
-  color: var(--color-text, #000000);
-  z-index: 110; 
+.main_menu.menu-open{
+    left: 0;
+}
+.menu-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.5rem;
 }
 
 
-@media  screen and (min-width: 1100px) {
+
+@media  screen and (min-width: 1110px) {
     .content-wrap{
         padding: 0;
     }
@@ -102,5 +115,16 @@ display: flex;
     .btn_more i {
         display: none;
     }
-    
+     /* На великих екранах меню стає горизонтальним */
+    .main_menu {
+        position: static;
+        height: auto;
+        width: auto;
+        flex-direction: row;
+        gap: 20px;
+    }
+    .menu-icon {
+        display: none;/* Ховаємо гамбургер на десктопі */
+        
+    }
 }
