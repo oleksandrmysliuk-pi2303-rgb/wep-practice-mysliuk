@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 @import url(/assets/css/variables.css);
 
 *, *::before, *::after {
@@ -6,8 +7,10 @@
   padding: 0;
 }
 
+
 body {
-    font-family: var(--color-bg);
+    font-family: 'DM Sans', serif;
+    
 }
 a{
     text-decoration: none;
@@ -28,6 +31,13 @@ ul{
     background-size: cover;
     background-position: center;
     background-color: var(--color-bg);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+
 }
 .navbar nav{
     display: flex;
@@ -37,9 +47,9 @@ ul{
 
 }
 .navbar .logo  {
-    font-size: 1.25rem;
+    font-size: 2rem;
     font-weight: 700;
-     color: var(--color-text);
+    color: var(--color-text);
 }
 .content-wrap{
 max-width: 1360px;
@@ -64,50 +74,160 @@ font-size: 1rem;
  color: var(--color-text-button);
  font-size: 1rem;
 }
-.main_menu{
-display: flex;
-position: absolute;
-top: 60px;  
-right: 1000px;
-height: calc(100vh - 60px);
-width: 100vw;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-background-color: var(--color-bg);
-font-size: 2rem;
-color: var(--color-text);
-transition: left 0.3s ease-in-out;
+.main_menu {
+    display: flex;
+    position: fixed;
+    top: 0;
+    right: 1000px;
+    height: 100vh;
+    width: 100vw;
+    flex-direction: column;
+    justify-content: flex-start; /* зверху вниз */
+    align-items: flex-start;     /* зліва */
+    background-color: var(--color-bg);
+    padding: 80px 24px 40px; /* зверху місце під лого */
+    gap: 10px;
 }
+
+.main_menu li {
+    width: 100%;
+    border-bottom: 1px solid #e5e5e5; /* розділювач */
+    padding: 20px 0;
+}
+
+.main_menu li a {
+    font-size: 1rem;
+    color: var(--color-text);
+    font-weight: 500;
+}
+
 .main_menu.menu-open{
     left: 0;
 }
 .menu-icon {
-    display: flex;
     align-items: center;
-    justify-content: center;
     cursor: pointer;
     font-size: 1.5rem;
 }
+.btn_desktop {
+    display: none;
+    padding: 15px 20px;
+    width: 170px;
+    height: 50px;
+    background: none repeat scroll 0% 0% transparent; 
+    background-color: var(--color-button);
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    justify-content: center;
+}
+.btn_desktop span {
+    color: var( --color-text-button);
+    font-size: 1.25rem;
+}
+.btn_desktop i {
+    color: var(--color-text-button);
+    font-size: 1.25rem;
+}
+.btn_mobile {
+    margin-top: auto !important;
+    border-bottom: none !important;
+    padding: 0 !important;
+}
 
+.logo {
+    position: relative;
+    z-index: 200;
+}
 
+.menu-icon {
+    position: relative;
+    z-index: 200;
+}
 
-@media  screen and (min-width: 1110px) {
+.hero_title  {
+    text-align: center;
+    color: var(--color-text);
+    font-size: 3rem;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-top: 42px; /* Великий відступ зверху, щоб текст не заліз під фіксований хедер */
+    margin-bottom: 71px;
+    margin-right: 16px;
+    margin-left: 16px; /* Відступ знизу до картки з телефоном */
+}
+.hero_image .hero_img_desktop  {
+    display: none;
+    
+}
+
+.hero_image {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* Вирівнюємо телефон по нижньому краю */
+    padding: 60px 20px 0;
+    max-width: 340px;      /* Обмежуємо максимальну ширину всього блока */
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+/* зелений бокс позаду */
+.hero_bg_box {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 70%;
+    background-color: var(--color-button-secondary); /* сіро-зелений як на фото */
+    border-radius: 24px 24px 0 0;
+}
+
+/* фото поверх боксу */
+.hero_img_mobile {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 280px;
+    border: 10px solid #000000;
+    border-radius: 40px;
+    height: 50%;
+
+}
+/* Медіа-запит для великих екранів */
+
+@media  screen and (min-width: 1025px) {
+    .header{
+        height: auto;
+        padding: fixed;
+        border-radius: 0 0 24px 24px;
+    }
+    .navbar{
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        height: 90px; /* Фіксована красива висота десктопного хедера */
+        padding: 0;   /* Забираємо зайві внутрішні відступи */
+        margin: 0;    /* Забираємо маржини, роботу робить .content-wrap */
+    }
     .content-wrap{
-        padding: 0;
+        padding: 0 40px;
     }
     .navbar .logo  {
         font-size: 2.5rem;
     }
   .btn_more {
-    width: 150px;
-    height: 40px;
+    padding: 0px 20px;
+    width: 160px;
+    height: 30px;
+    background: none repeat scroll 0% 0% transparent; 
     background-color: var(--color-button);
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    justify-content: right;
   }
     .btn_more span {
         display: inline;
@@ -116,15 +236,61 @@ transition: left 0.3s ease-in-out;
         display: none;
     }
      /* На великих екранах меню стає горизонтальним */
-    .main_menu {
+        .main_menu {
         position: static;
         height: auto;
         width: auto;
         flex-direction: row;
-        gap: 20px;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        margin: 0;
+        padding: 0;        /* скидаємо мобільний padding */
+        border: none;
+        background-color: transparent;      /* скидаємо розділювачі */
+    }
+    .main_menu li {
+        border-bottom: none; /* прибираємо лінії між пунктами */
+        padding: 0;      
+        white-space: nowrap;    /* скидаємо мобільний padding */
+    }
+
+    .main_menu li a {
+        font-size: 1rem;
+        border-bottom: none;  /* прибираємо лінії між пунктами */
+        padding: 0;
+        width: auto;
+    }
+
+    .btn_more i {
+        position: absolute;
+        padding: 0px 20px;
+        width: 160px;
+        height: 30px;
+        background: none repeat scroll 0% 0% transparent; 
+        background-color: var(--color-button);
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+    }
+    .btn_desktop {
+        display: flex;
+
     }
     .menu-icon {
-        display: none;/* Ховаємо гамбургер на десктопі */
-        
+        display: none; 
+    }
+    .btn_mobile {
+        display: none;
+    }
+    .btn_desktop {
+        display: flex;
+    }
+
+    .hero_img_mobile {
+        display: none;
+    }
+    .hero_img_desktop {
+        display: block;
     }
 }
