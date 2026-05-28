@@ -25,19 +25,16 @@ ul{
     display: flex;
     align-items: center;
 }
-.main-header{
-    width: 100%;
-    height: 100vh;
-    background-size: cover;
-    background-position: center;
-    background-color: var(--color-bg);
+.main_header {
     position: fixed;
     top: 0;
     left: 0;
+    width: 100%;
+    height: auto; /* ← НЕ 100vh */
     z-index: 100;
+    background-color: var(--color-bg);
     border-radius: 0 0 16px 16px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-
 }
 .navbar nav{
     display: flex;
@@ -78,7 +75,7 @@ font-size: 1rem;
     display: flex;
     position: fixed;
     top: 0;
-    right: 1000px;
+    left: 1000px;
     height: 100vh;
     width: 100vw;
     flex-direction: column;
@@ -87,6 +84,8 @@ font-size: 1rem;
     background-color: var(--color-bg);
     padding: 80px 24px 40px; /* зверху місце під лого */
     gap: 10px;
+    z-index: 99;
+    overflow: hidden;
 }
 
 .main_menu li {
@@ -144,11 +143,17 @@ font-size: 1rem;
     position: relative;
     z-index: 200;
 }
-
+.hero {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
 .hero_title  {
     text-align: center;
     color: var(--color-text);
-    font-size: 3rem;
+    font-size: 4rem;
     font-weight: 500;
     line-height: 1.1;
     letter-spacing: -1px;
@@ -166,11 +171,10 @@ font-size: 1rem;
     position: relative;
     display: flex;
     justify-content: center;
-    align-items: flex-end; /* Вирівнюємо телефон по нижньому краю */
     padding: 60px 20px 0;
     max-width: 340px;      /* Обмежуємо максимальну ширину всього блока */
     margin: 0 auto;
-    overflow: hidden;
+    overflow: visible;
 }
 
 /* зелений бокс позаду */
@@ -179,10 +183,11 @@ font-size: 1rem;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 100%;
-    height: 70%;
-    background-color: var(--color-button-secondary); /* сіро-зелений як на фото */
-    border-radius: 24px 24px 0 0;
+    width: 100%;       
+    height: 60%;       /* ← тільки нижня частина */
+    background-color: var(--color-button-secondary);
+    border-radius: 20px 20px 20px 20px;
+    z-index: 0;
 }
 
 /* фото поверх боксу */
@@ -193,9 +198,37 @@ font-size: 1rem;
     max-width: 280px;
     border: 10px solid #000000;
     border-radius: 40px;
-    height: 50%;
+    height: auto;
 
 }
+
+.trusted {
+    padding: 40px 20px;
+}
+
+.trusted_label {
+    font-size: 0.9rem;
+    color: var(--color-muted, #888);
+    margin-bottom: 32px;
+}
+
+/* мобайл — 2 колонки */
+.trusted_grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px 20px;
+    align-items: center;
+    justify-items: center;
+}
+
+.trusted_item img {
+    color: var(--color-text-secondary);
+    max-width: 140px;
+    width: 100%;
+    filter: grayscale(100%);
+    opacity: 0.5;
+}
+
 /* Медіа-запит для великих екранів */
 
 @media  screen and (min-width: 1025px) {
@@ -292,5 +325,10 @@ font-size: 1rem;
     }
     .hero_img_desktop {
         display: block;
+    }
+
+     .trusted_grid {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 0 40px;
     }
 }

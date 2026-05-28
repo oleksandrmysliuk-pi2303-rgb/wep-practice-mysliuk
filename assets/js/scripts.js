@@ -6,5 +6,6 @@ menuIcon.addEventListener('click', () => {
     menuIconOpen.classList.toggle('d_none');
     menuIconClose.classList.toggle('d_none');
     mainMenu.classList.toggle('menu-open');
+    document.body.style.overflow = mainMenu.classList.contains('menu-open') ? 'hidden' : '';
 })
 
