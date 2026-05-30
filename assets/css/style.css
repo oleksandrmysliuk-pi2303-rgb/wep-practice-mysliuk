@@ -174,6 +174,7 @@ ul {
   margin-top: 70px; /* Великий відступ зверху, щоб текст не заліз під фіксований хедер */
   margin-right: 16px;
   margin-left: 16px; /* Відступ знизу до картки з телефоном */
+  font-weight: bold;
 }
 .hero_img_desktop {
   display: none;
@@ -197,7 +198,7 @@ ul {
   left: 50%;
   transform: translateX(-50%);
   width: 343px;
-  height: 390px; /* ← тільки нижня частина */
+  height: 390px; 
   background-color: var(--color-button-secondary);
   border-radius: 20px 20px 20px 20px;
   z-index: 0;
@@ -232,6 +233,7 @@ ul {
   gap: 32px 20px;
   align-items: center;
   justify-items: center;
+  color: var(--color-text-secondary)
 }
 
 .trusted_item img {
@@ -240,6 +242,73 @@ ul {
   width: 100%;
   filter: grayscale(100%);
   opacity: 0.5;
+}
+.benefits {
+    padding: 80px 0;
+}
+
+.benefits_header {
+    margin-bottom: 40px;
+}
+
+.benefits_label {
+    font-size: 0.75rem;
+    color: var(--color-button);
+    text-transform: capitalize;
+    letter-spacing: 0.05em;
+    display: block;
+    margin-bottom: 16px;
+}
+
+.benefits_title {
+    font-size: 2.5rem;
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    color: var(--color-text);
+    margin-bottom: 20px;
+}
+
+.benefits_desc {
+    font-size: 1rem;
+    color: var(--color-text);
+    opacity: 0.6;
+    line-height: 1.5;
+}
+
+/* картки — мобайл вертикально з розділювачами */
+.benefits_list {
+    display: flex;
+    flex-direction: column;
+}
+
+.benefits_item {
+    padding: 32px 0;
+    border-top: 1px solid #e5e5e5;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.benefits_item i {
+    font-size: 1.25rem;
+    color: var(--color-text);
+}
+.benefits_item img{
+  width: 100px;
+  height: 100px;
+}
+.benefits_item_title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.benefits_item_desc {
+    font-size: 0.9rem;
+    color: var(--color-text);
+    opacity: 0.6;
+    line-height: 1.6;
 }
 
 /*Медіа для ноубука*/
@@ -359,6 +428,7 @@ ul {
     margin-top: 150px;
     margin-right: 0;
     margin-left: 0;
+    font-weight: bold ;
   }
   .hero_img_mobile {
     display: none;
@@ -382,6 +452,30 @@ ul {
   section.trusted {
     padding: 40px;
   }
+  .benefits_list {
+        flex-direction: row;
+        gap: 40px;
+        border-top: 1px solid #e5e5e5;
+    }
+
+    .benefits_item {
+        flex: 1;
+        border-top: none;
+        padding: 24px 0 0 24px;
+    }
+
+    .benefits_item:first-child {
+        border-left: none;
+        padding-left: 0;
+    }
+
+    .benefits_title {
+        font-size: 3.5rem;
+    }
+
+    .benefits_header {
+        margin-bottom: 60px;
+    }
 }
 /* Медіа для планшета*/
 @media screen and (min-width: 800px) and (max-width: 1279px) {
