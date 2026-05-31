@@ -399,6 +399,80 @@ ul {
 .bigpicture_img_desktop{
   display: none;
 }
+
+.bigpicture {
+    padding: 60px 0;
+}
+
+.bigpicture_inner {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.bigpicture_title {
+    font-size: 2.5rem;
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    color: var(--color-text);
+    margin-bottom: 20px;
+}
+
+.bigpicture_desc {
+    font-size: 1rem;
+    color: var(--color-text);
+    opacity: 0.6;
+    line-height: 1.5;
+    margin-bottom: 32px;
+}
+
+.bigpicture_list {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 32px;
+}
+
+.bigpicture_item {
+    display: flex;
+    gap: 16px;
+    padding: 20px 0;
+    border-top: 1px solid #e5e5e5;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--color-text);
+}
+
+.bigpicture_num {
+    font-size: 0.85rem;
+    color: var(--color-text);
+    opacity: 0.4;
+    min-width: 24px;
+}
+
+.bigpicture_btn {
+    background-color: var(--color-button-third);
+    color: var(--color-text);
+    border: none;
+    border-radius: 100px;
+    padding: 14px 28px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+/* фото */
+.bigpicture_img_mobile {
+    width: 100%;
+    border-radius: 16px;
+    object-fit: cover;
+}
+.bigpicture_img_tablet {
+    display: none;
+}
+.bigpicture_img_desktop{
+  display: none;
+}
 /*Медіа для ноубука*/
 
 @media screen and (min-width: 1280px) {
@@ -593,14 +667,24 @@ ul {
     .bigpicture_text {
         flex: 1;
     }
+    .bigpicture_desc{
+      font-size: 1.1rem;
+    }
+    .bigpicture_item{
+      font-size: 1.125rem;
+    }
+    .bigpicture_num{
+      font-size: 1.125rem;
+    }
 
     .bigpicture_title {
-        font-size: 3.5rem;
+        font-size: 4rem;
     }
 
     .bigpicture_image {
         flex: 1;
     }
+
 
     .bigpicture_img_mobile {
         display: none;
@@ -615,6 +699,7 @@ ul {
         border-radius: 20px;
         object-fit: cover;
     }
+
 
 }
 /* Медіа для планшета*/
@@ -752,6 +837,18 @@ ul {
     }
     .benefits_image_desk {
         display: none;
+    }
+    .bigpicture_img_mobile {
+        display: none;
+    }
+    .bigpicture_img_desktop{
+      display: none;
+    }
+    .bigpicture_img_tablet {
+        display: block;
+        width: 100%;
+        border-radius: 16px;
+        object-fit: cover;
     }
     .bigpicture_img_mobile {
         display: none;
