@@ -854,6 +854,56 @@ ul {
     opacity: 0.5;
     margin-left: auto;
 }
+/*--------------*/
+/* Всі кнопки */
+.btn {
+    transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Learn More — зелена кнопка */
+.btn_desktop:hover,
+.btn_more:hover {
+    opacity: 0.85;
+    transform: scale(1.03);
+}
+
+/* Discover More / howto — світло-зелена */
+.bigpicture_btn:hover,
+.howto_btn:hover,
+.specs_btn:hover {
+    background-color: #c4d8b8;
+    transform: scale(1.03);
+}
+/* Connect btn */
+.connect_btn:hover {
+    opacity: 0.85;
+    transform: scale(1.02);
+}
+
+/* Footer links */
+.footer_link {
+    transition: color 0.3s ease;
+}
+.footer_link:hover {
+    color: var(--color-button);
+}
+
+/* Nav links */
+.main_menu li a {
+    transition: color 0.3s ease;
+}
+.main_menu li a:hover {
+    color: var(--color-button);
+}
+
+/* Slider кнопки */
+.specs_btn_prev:hover,
+.specs_btn_next:hover,
+.howto_btn_prev:hover,
+.howto_btn_next:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
 /*Медіа для ноубука*/
 @media screen and (min-width: 1280px) {
   .main_header {
