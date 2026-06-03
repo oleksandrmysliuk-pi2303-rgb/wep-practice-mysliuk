@@ -43,3 +43,24 @@ window.addEventListener('resize', () => {
         goToSlide(current);
     }
 });
+// HOWTO SLIDER
+const howtoSlider = document.getElementById('howtoSlider');
+const howtoPrev = document.getElementById('howtoPrev');
+const howtoNext = document.getElementById('howtoNext');
+const howtoCols = document.querySelectorAll('.howto_col');
+let howtoCurrent = 0;
+
+function howtoGoToSlide(index) {
+    if (window.innerWidth >= 1280) return;
+    const colWidth = howtoSlider.parentElement.offsetWidth; /* ← 100% */
+    howtoSlider.style.transform = `translateX(-${index * colWidth}px)`;
+    howtoCurrent = index;
+}
+
+howtoNext.addEventListener('click', () => {
+    if (howtoCurrent < howtoCols.length - 1) howtoGoToSlide(howtoCurrent + 1); // ← було -2, стало -1
+});
+
+howtoPrev.addEventListener('click', () => {
+    if (howtoCurrent > 0) howtoGoToSlide(howtoCurrent - 1);
+});
