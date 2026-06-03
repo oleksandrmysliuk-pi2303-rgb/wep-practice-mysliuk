@@ -88,10 +88,10 @@ AOS.init({
 });
 document.addEventListener('DOMContentLoaded', () => {
     AOS.init({
-        duration: 800,
+        duration: 700,
         once: true,
-        offset: 80,
-        disable: false,
+        offset: 60,
+        easing: 'ease-out-cubic',
     });
 });
 window.addEventListener('scroll', () => {
