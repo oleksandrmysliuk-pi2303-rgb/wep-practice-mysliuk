@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
 @import url(../css/variables.css);
-
 *,
 *::before,
 *::after {
@@ -904,6 +903,163 @@ ul {
     transform: scale(1.1);
     transition: transform 0.3s ease;
 }
+
+
+/* Overlay */
+.modal_overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.modal_overlay.is_open {
+    display: flex;
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* Модалка */
+.modal {
+    background: var(--color-bg);
+    border-radius: 20px;
+    padding: 40px;
+    width: 90%;
+    max-width: 480px;
+    position: relative;
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+}
+
+.modal_overlay.is_open .modal {
+    transform: translateY(0);
+}
+
+/* Кнопка закрити */
+.modal_close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: var(--color-text);
+    opacity: 0.5;
+    transition: opacity 0.2s;
+}
+.modal_close:hover {
+    opacity: 1;
+}
+
+.modal_title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--color-text);
+}
+
+.modal_desc {
+    font-size: 0.9rem;
+    opacity: 0.6;
+    margin-bottom: 24px;
+}
+
+/* Форма */
+.modal_form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.modal_field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.modal_field label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-text);
+}
+
+.modal_field input,
+.modal_field textarea {
+    padding: 12px 16px;
+    border: 1px solid var(--color-border, #e5e5e5);
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-family: inherit;
+    color: var(--color-text);
+    background: var(--color-bg);
+    transition: border-color 0.2s;
+    resize: none;
+}
+
+.modal_field input:focus,
+.modal_field textarea:focus {
+    border-color: var(--color-button);
+}
+
+/* Помилка */
+.modal_error {
+    font-size: 0.75rem;
+    color: #e53e3e;
+    display: none;
+}
+
+.modal_field.has_error input,
+.modal_field.has_error textarea {
+    border-color: #e53e3e;
+}
+
+.modal_field.has_error .modal_error {
+    display: block;
+}
+
+/* Кнопка відправити */
+.modal_submit {
+    background-color: var(--color-button);
+    color: var(--color-text-button);
+    border: none;
+    border-radius: 100px;
+    padding: 14px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.3s;
+    margin-top: 8px;
+}
+.modal_submit:hover {
+    opacity: 0.85;
+}
+
+/* Успішне відправлення */
+.modal_success {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.modal_success i {
+    font-size: 3rem;
+    color: var(--color-button);
+}
+
+.modal_success p {
+    font-size: 1rem;
+    color: var(--color-text);
+}
 /*Медіа для ноубука*/
 @media screen and (min-width: 1280px) {
   .main_header {
@@ -1231,6 +1387,22 @@ ul {
         gap: 40px;
         margin-bottom: 40px;
     }
+    .modal {
+        max-width: 560px;
+        padding: 56px;
+    }
+    .modal_title {
+        font-size: 2rem;
+    }
+    .modal_field input,
+    .modal_field textarea {
+        font-size: 1rem;
+        padding: 14px 18px;
+    }
+    .modal_submit {
+        font-size: 1.05rem;
+        padding: 16px;
+    }
 }
 /* Медіа для планшета*/
 @media screen and (min-width: 800px) and (max-width: 1279px) {
@@ -1450,5 +1622,12 @@ ul {
         flex-direction: row;
         gap: 32px;
         margin-bottom: 48px;
+    }
+    .modal {
+        max-width: 520px;
+        padding: 48px;
+    }
+    .modal_title {
+        font-size: 1.75rem;
     }
 }

@@ -23,13 +23,12 @@
         <li><a href="#specs">Specifications</a></li>
         <li><a href="#howto">How-to</a></li>
         <li><a href="#get-started">Get Started</a></li>
-        <button class="btn btn_more btn_mobile">
+        <button class="btn btn_more btn_mobile modal_open_btn">
             <span>Learn More</span>
             <i class="fa-solid fa-arrow-up-right-from-square"></i>
         </button>
-        </li>
       </ul> 
-      <button class="btn btn_desktop">
+      <button class="btn btn_desktop  modal_open_btn">
         <span>Learn More</span>
         <i class="fa-solid fa-arrow-up-right-from-square"></i>
       </button>
@@ -267,7 +266,38 @@
     <div class="content-wrap">
         <h2 class="connect_title" data-aos="fade-up">Connect with us</h2>
         <p class="connect_desc" data-aos="fade-up" data-aos-delay="100">Schedule a quick call to learn how Area can turn your regional data into a powerful advantage.</p>
-        <button class="btn connect_btn" data-aos="fade-up" data-aos-delay="200">Learn More ↗</button>
+        <button class="btn connect_btn modal_open_btn" data-aos="fade-up" data-aos-delay="200">Learn More ↗</button>
+        <div class="modal_overlay" id="modalOverlay">
+    <div class="modal">
+        <button class="modal_close" id="modalClose">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <h2 class="modal_title">Get in Touch</h2>
+        <p class="modal_desc">Leave your details and we'll get back to you as soon as possible.</p>
+        <form class="modal_form" id="modalForm" novalidate>
+            <div class="modal_field">
+                <label for="modal_name">Name *</label>
+                <input type="text" id="modal_name" name="name" placeholder="Your name" />
+                <span class="modal_error" id="nameError">Please enter your name</span>
+            </div>
+            <div class="modal_field">
+                <label for="modal_email">Email *</label>
+                <input type="email" id="modal_email" name="email" placeholder="your@email.com" />
+                <span class="modal_error" id="emailError">Please enter a valid email</span>
+            </div>
+            <div class="modal_field">
+                <label for="modal_message">Message *</label>
+                <textarea id="modal_message" name="message" rows="4" placeholder="Your message..."></textarea>
+                <span class="modal_error" id="messageError">Please enter your message</span>
+            </div>
+            <button type="submit" class="modal_submit">Send Message</button>
+        </form>
+        <div class="modal_success" id="modalSuccess">
+            <i class="fa-solid fa-circle-check"></i>
+            <p>Thank you! We'll get back to you shortly.</p>
+        </div>
+    </div>
+</div>
     </div>
 </section>
   </main>
@@ -287,7 +317,6 @@
             <span class="footer_copy">© Area. 2025</span>
             <span class="footer_rights">All Rights Reserved</span>
         </div>
-
     </div>
 </footer>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
