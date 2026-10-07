@@ -171,3 +171,74 @@ modalForm.addEventListener('submit', (e) => {
         }, 2500);
     }
 });
+// REVIEWS — DOM рендеринг
+// REVIEWS — fetch з JSON
+function renderStars(rating) {
+    let stars = '';
+    for (let i = 0; i < 5; i++) {
+        stars += `<i class="fa-${i < rating ? 'solid' : 'regular'} fa-star"></i>`;
+    }
+    return stars;
+}
+
+function renderReviews(reviews) {
+    const grid = document.getElementById('reviewsGrid');
+    if (!grid) return;
+
+    grid.innerHTML = reviews.map(review => `
+        <div class="review_card" data-aos="fade-up">
+            <div class="review_stars">
+                ${renderStars(review.rating)}
+            </div>
+            <p class="review_text">"${review.text}"</p>
+            <div class="review_author">
+                <div class="review_avatar">${review.avatar}</div>
+                <div>
+                    <p class="review_name">${review.name}</p>
+                    <p class="review_role">${review.role}</p>
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+function showReviewsError() {
+    const grid = document.getElementById('reviewsGrid');
+    if (!grid) return;
+    grid.innerHTML = `
+        <div class="reviews_error">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <p>Failed to load reviews. Please try again later.</p>
+        </div>
+    `;
+}
+
+async function fetchReviews() {
+    const grid = document.getElementById('reviewsGrid');
+    if (!grid) return;
+
+    // Показуємо лоадер поки грузиться
+    grid.innerHTML = `<div class="reviews_loading">Loading reviews...</div>`;
+
+    try {
+        const response = await fetch('assets/data/reviews.json');
+
+        if (!response.ok) {
+            throw new Error(`HTTP error: ${response.status}`);
+        }
+
+        const reviews = await response.json();
+        renderReviews(reviews);
+
+        // Оновлюємо AOS після рендерингу
+        if (typeof AOS !== 'undefined') {
+            AOS.refresh();
+        }
+
+    } catch (error) {
+        console.error('Failed to load reviews:', error);
+        showReviewsError();
+    }
+}
+
+fetchReviews();

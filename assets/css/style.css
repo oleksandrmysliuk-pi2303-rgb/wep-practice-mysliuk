@@ -1060,6 +1060,135 @@ ul {
     font-size: 1rem;
     color: var(--color-text);
 }
+.reviews {
+    padding: 60px 0;
+    border-top: 1px solid #e5e5e5;
+}
+
+.reviews_header {
+    margin-bottom: 40px;
+}
+
+.reviews_label {
+    font-size: 0.75rem;
+    color: var(--color-button);
+    text-transform: capitalize;
+    letter-spacing: 0.05em;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.reviews_title {
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    color: var(--color-text);
+    margin-bottom: 12px;
+}
+
+.reviews_desc {
+    font-size: 0.95rem;
+    color: var(--color-text);
+    opacity: 0.6;
+    line-height: 1.5;
+}
+
+/* Грід — мобайл одна картка */
+.reviews_grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+/* Картка */
+.review_card {
+    background: var(--color-bg);
+    border: 1px solid #e5e5e5;
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Зірочки */
+.review_stars {
+    display: flex;
+    gap: 4px;
+    color: var(--color-button);
+    font-size: 0.9rem;
+}
+
+/* Текст відгуку */
+.review_text {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--color-text);
+    opacity: 0.8;
+    flex: 1;
+}
+
+/* Автор */
+.review_author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-top: 1px solid #e5e5e5;
+    padding-top: 16px;
+}
+
+.review_avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--color-button);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.review_name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.review_role {
+    font-size: 0.75rem;
+    color: var(--color-button);
+}
+.reviews_loading {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+    font-size: 0.95rem;
+    color: var(--color-text);
+    opacity: 0.5;
+}
+
+.reviews_error {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    color: #e53e3e;
+}
+
+.reviews_error i {
+    font-size: 2rem;
+}
+
+.reviews_error p {
+    font-size: 0.95rem;
+}
 /*Медіа для ноубука*/
 @media screen and (min-width: 1280px) {
   .main_header {
@@ -1403,6 +1532,17 @@ ul {
         font-size: 1.05rem;
         padding: 16px;
     }
+     .reviews_grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .reviews_title {
+        font-size: 3rem;
+    }
+
+    .reviews_header {
+        margin-bottom: 60px;
+    }
 }
 /* Медіа для планшета*/
 @media screen and (min-width: 800px) and (max-width: 1279px) {
@@ -1629,5 +1769,12 @@ ul {
     }
     .modal_title {
         font-size: 1.75rem;
+    }
+      .reviews_grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .reviews_title {
+        font-size: 2.5rem;
     }
 }

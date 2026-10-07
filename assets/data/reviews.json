@@ -1,0 +1,44 @@
+[
+    {
+        "name": "Sarah Johnson",
+        "role": "Marketing Director",
+        "text": "Area completely changed how we analyze regional data. The visualizations are incredibly clear and our team adopted it within days.",
+        "rating": 5,
+        "avatar": "SJ"
+    },
+    {
+        "name": "Mark Thompson",
+        "role": "Head of Operations",
+        "text": "I was skeptical at first, but Area delivered beyond expectations. The insights we get now would have taken weeks to compile manually.",
+        "rating": 5,
+        "avatar": "MT"
+    },
+    {
+        "name": "Elena Petrov",
+        "role": "Data Analyst",
+        "text": "The platform is intuitive and powerful. Our reporting time dropped by 60% and stakeholders finally understand our data.",
+        "rating": 5,
+        "avatar": "EP"
+    },
+    {
+        "name": "James Williams",
+        "role": "CEO",
+        "text": "Area gave us a competitive edge. Real-time regional insights helped us make faster and better decisions across all our offices.",
+        "rating": 4,
+        "avatar": "JW"
+    },
+    {
+        "name": "Olivia Chen",
+        "role": "Product Manager",
+        "text": "Seamless integration and beautiful dashboards. Our whole team is now data-driven thanks to Area.",
+        "rating": 5,
+        "avatar": "OC"
+    },
+    {
+        "name": "David Kim",
+        "role": "Business Analyst",
+        "text": "The best investment we made this year. Area pays for itself in the time saved on manual reporting alone.",
+        "rating": 5,
+        "avatar": "DK"
+    }
+]
