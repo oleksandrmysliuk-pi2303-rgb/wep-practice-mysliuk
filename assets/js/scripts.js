@@ -1,13 +1,20 @@
+
+const supabaseUrl = 'https://wbetohxzimjeajxbdcyg.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndiZXRvaHh6aW1qZWFqeGJkY3lnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTEzOTg1NDgsImV4cCI6MjEwNjk3NDU0OH0.Qr0a5ER0wYoj1-IyvEsKyaUW0oKeni5lVHcC-ZEucwo';
+supabase = window.supabase.createClient(supabaseUrl, SUPABASE_KEY);
+// ===== BURGER MENU =====
 const menuIcon = document.getElementById('menuIcon');
 const menuIconOpen = document.getElementById('menuIconOpen');
 const menuIconClose = document.getElementById('menuIconClose');
 const mainMenu = document.getElementById('mainMenu');
+
 menuIcon.addEventListener('click', () => {
     menuIconOpen.classList.toggle('d_none');
     menuIconClose.classList.toggle('d_none');
     mainMenu.classList.toggle('menu-open');
     document.body.style.overflow = mainMenu.classList.contains('menu-open') ? 'hidden' : '';
-})
+});
+
 const menuLinks = document.querySelectorAll('.main_menu a');
 menuLinks.forEach(link => {
     link.addEventListener('click', () => {
@@ -18,7 +25,15 @@ menuLinks.forEach(link => {
     });
 });
 
-// SPECS SLIDER
+// ===== STICKY HEADER =====
+window.addEventListener('scroll', () => {
+    const header = document.getElementById('header');
+    if (window.innerWidth >= 800) {
+        header.classList.toggle('scrolled', window.scrollY > 50);
+    }
+});
+
+// ===== SPECS SLIDER =====
 const slider = document.getElementById('specsSlider');
 const prevBtn = document.getElementById('specsPrev');
 const nextBtn = document.getElementById('specsNext');
@@ -27,11 +42,9 @@ let current = 0;
 
 function goToSlide(index) {
     if (window.innerWidth >= 1280) return;
-
     const colWidth = slider.offsetWidth;
     slider.style.transform = `translateX(-${index * colWidth}px)`;
     slider.style.transition = 'transform 0.4s ease';
-
     cols.forEach(col => col.classList.remove('specs_col_active'));
     cols[index].classList.add('specs_col_active');
     current = index;
@@ -52,7 +65,8 @@ window.addEventListener('resize', () => {
         goToSlide(current);
     }
 });
-// HOWTO SLIDER
+
+// ===== HOWTO SLIDER =====
 const howtoSlider = document.getElementById('howtoSlider');
 const howtoPrev = document.getElementById('howtoPrev');
 const howtoNext = document.getElementById('howtoNext');
@@ -61,52 +75,30 @@ let howtoCurrent = 0;
 
 function howtoGoToSlide(index) {
     if (window.innerWidth >= 1280) return;
-    const colWidth = howtoSlider.parentElement.offsetWidth; /* ← 100% */
+    const colWidth = howtoSlider.parentElement.offsetWidth;
     howtoSlider.style.transform = `translateX(-${index * colWidth}px)`;
     howtoCurrent = index;
 }
 
 howtoNext.addEventListener('click', () => {
-    if (howtoCurrent < howtoCols.length - 1) howtoGoToSlide(howtoCurrent + 1); // ← було -2, стало -1
+    if (howtoCurrent < howtoCols.length - 1) howtoGoToSlide(howtoCurrent + 1);
 });
 
 howtoPrev.addEventListener('click', () => {
     if (howtoCurrent > 0) howtoGoToSlide(howtoCurrent - 1);
 });
-window.addEventListener('scroll', () => {
-    const header = document.getElementById('header');
-    if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-    } else {
-        header.classList.remove('scrolled');
-    }
-});
+
+// ===== AOS =====
 AOS.init({
-    duration: 800,
+    duration: 700,
     once: true,
-    offset: 100,
-});
-document.addEventListener('DOMContentLoaded', () => {
-    AOS.init({
-        duration: 700,
-        once: true,
-        offset: 60,
-        easing: 'ease-out-cubic',
-    });
-});
-window.addEventListener('scroll', () => {
-    const header = document.getElementById('header');
-    if (window.innerWidth >= 800) { // ← тільки від планшета
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    }
+    offset: 60,
+    easing: 'ease-out-cubic',
 });
 
+// ===== MODAL =====
 const modalOverlay = document.getElementById('modalOverlay');
-const modalOpenBtns = document.querySelectorAll('.modal_open_btn'); // ← з крапкою і підкресленням
+const modalOpenBtns = document.querySelectorAll('.modal_open_btn');
 const modalClose = document.getElementById('modalClose');
 const modalForm = document.getElementById('modalForm');
 const modalSuccess = document.getElementById('modalSuccess');
@@ -121,11 +113,7 @@ function closeModal() {
     document.body.style.overflow = '';
 }
 
-// forEach бо кнопок декілька
-modalOpenBtns.forEach(btn => {
-    btn.addEventListener('click', openModal);
-});
-
+modalOpenBtns.forEach(btn => btn.addEventListener('click', openModal));
 modalClose.addEventListener('click', closeModal);
 
 modalOverlay.addEventListener('click', (e) => {
@@ -171,8 +159,8 @@ modalForm.addEventListener('submit', (e) => {
         }, 2500);
     }
 });
-// REVIEWS — DOM рендеринг
-// REVIEWS — fetch з JSON
+
+// ===== REVIEWS =====
 function renderStars(rating) {
     let stars = '';
     for (let i = 0; i < 5; i++) {
@@ -184,15 +172,12 @@ function renderStars(rating) {
 function renderReviews(reviews) {
     const grid = document.getElementById('reviewsGrid');
     if (!grid) return;
-
     grid.innerHTML = reviews.map(review => `
         <div class="review_card" data-aos="fade-up">
-            <div class="review_stars">
-                ${renderStars(review.rating)}
-            </div>
+            <div class="review_stars">${renderStars(review.rating)}</div>
             <p class="review_text">"${review.text}"</p>
             <div class="review_author">
-                <div class="review_avatar">${review.avatar}</div>
+                <div class="review_avatar">${review.avatar || '?'}</div>
                 <div>
                     <p class="review_name">${review.name}</p>
                     <p class="review_role">${review.role}</p>
@@ -217,26 +202,21 @@ async function fetchReviews() {
     const grid = document.getElementById('reviewsGrid');
     if (!grid) return;
 
-    // Показуємо лоадер поки грузиться
     grid.innerHTML = `<div class="reviews_loading">Loading reviews...</div>`;
 
     try {
-        const response = await fetch('assets/data/reviews.json');
+        const { data, error } = await supabase
+            .from('reviews')
+            .select('*')
+            .order('created_at', { ascending: false });
 
-        if (!response.ok) {
-            throw new Error(`HTTP error: ${response.status}`);
-        }
+        if (error) throw error;
 
-        const reviews = await response.json();
-        renderReviews(reviews);
+        renderReviews(data);
+        if (typeof AOS !== 'undefined') AOS.refresh();
 
-        // Оновлюємо AOS після рендерингу
-        if (typeof AOS !== 'undefined') {
-            AOS.refresh();
-        }
-
-    } catch (error) {
-        console.error('Failed to load reviews:', error);
+    } catch (err) {
+        console.error('Failed to load reviews:', err);
         showReviewsError();
     }
 }
