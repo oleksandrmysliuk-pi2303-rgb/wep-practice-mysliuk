@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Area</title>
+    <link rel="icon" type="image/png" href="assets/image/icon/logo.ico" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/contact.css" />
+</head>
+<body>
+    <header class="main_header" id="header">
+        <div class="navbar">
+            <nav class="content_menu d_flex">
+                <a href="index.html" class="logo">Area</a>
+                <div id="menuIcon" class="menu-icon">
+                    <div id="menuIconOpen" class="menu-icon-open"><i class="fas fa-bars"></i></div>
+                    <div id="menuIconClose" class="menu-icon-close d_none"><i class="fas fa-times"></i></div>
+                </div>
+                <ul id="mainMenu" class="main_menu">
+                    <li><a href="about.html" class="active">About Us</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="index.html#benefits">Benefits</a></li>
+                    <button class="btn btn_more btn_mobile modal_open_btn">
+                        <span>Learn More</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </button>
+                </ul>
+                <button class="btn btn_desktop modal_open_btn">
+                    <span>Learn More</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+<main>
+    <!-- HERO -->
+    <section class="contact_hero">
+        <div class="content-wrap">
+            <span class="contact_label" data-aos="fade-up">Contact</span>
+            <h1 class="contact_title" data-aos="fade-up" data-aos-delay="100">Get in touch.</h1>
+            <p class="contact_desc" data-aos="fade-up" data-aos-delay="200">Have a question or want to learn more about Area? We'd love to hear from you.</p>
+        </div>
+    </section>
+
+    <!-- КОНТАКТИ + ФОРМА -->
+    <section class="contact_main">
+        <div class="content-wrap">
+            <div class="contact_inner">
+
+                <!-- Інфо -->
+                <div class="contact_info" data-aos="fade-right">
+                    <div class="contact_info_item">
+                        <i class="fa-solid fa-envelope"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <p><a href="mailto:sasko2807@gmail.com">sasko2807@gmail.com</a></p>
+                        </div>
+                    </div>
+                    <div class="contact_info_item">
+                        <i class="fa-solid fa-phone"></i>
+                        <div>
+                            <h3>Phone</h3>
+                            <p>+380 966 190 819</p>
+                        </div>
+                    </div>
+                    <div class="contact_info_item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div>
+                            <h3>Office</h3>
+                            <p>123 Data Street, San Francisco, CA</p>
+                        </div>
+                    </div>
+                    <div class="contact_socials">
+                        <a href="#" class="contact_social"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="contact_social"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#" class="contact_social"><i class="fa-brands fa-github"></i></a>
+                    </div>
+                </div>
+                <!-- Форма -->
+                <div class="contact_form_wrap" data-aos="fade-left">
+                    <form class="contact_form" id="contactForm" novalidate>
+                        <div class="contact_field">
+                            <label for="contact_name">Full Name *</label>
+                            <input type="text" id="contact_name" name="name" placeholder="Your full name" autocomplete="name" />
+                            <span class="contact_error">Please enter your name</span>
+                        </div>
+                        <div class="contact_field">
+                            <label for="contact_email">Email *</label>
+                            <input type="email" id="contact_email" name="email" placeholder="your@email.com" autocomplete="email" />
+                            <span class="contact_error">Please enter a valid email</span>
+                        </div>
+                        <div class="contact_field">
+                            <label for="contact_subject">Subject *</label>
+                            <input type="text" id="contact_subject" name="subject" placeholder="How can we help?" autocomplete="off" />
+                            <span class="contact_error">Please enter a subject</span>
+                        </div>
+                        <div class="contact_field">
+                            <label for="contact_message">Message *</label>
+                            <textarea id="contact_message" name="message" rows="5" placeholder="Your message..." autocomplete="off"></textarea>
+                            <span class="contact_error">Please enter your message</span>
+                        </div>
+                        <button type="submit" class="btn contact_submit">Send Message</button>
+                    </form>
+                    <div class="contact_success" id="contactSuccess">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <p>Thank you! We'll get back to you within 24 hours.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <section class="contact_faq">
+        <div class="content-wrap">
+            <div class="contact_faq_header" data-aos="fade-up">
+                <span class="contact_label">FAQ</span>
+                <h2 class="contact_faq_title">Frequently asked questions.</h2>
+            </div>
+            <div class="contact_faq_list" id="faqList">
+                <div class="faq_item" data-aos="fade-up">
+                    <button class="faq_question">
+                        How do I get started with Area?
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                    <div class="faq_answer">
+                        <p>Getting started is easy — sign up for a free account, connect your data sources, and start exploring insights within minutes.</p>
+                    </div>
+                </div>
+                <div class="faq_item" data-aos="fade-up">
+                    <button class="faq_question">
+                        Is there a free trial available?
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                    <div class="faq_answer">
+                        <p>Yes! We offer a 14-day free trial with full access to all features. No credit card required.</p>
+                    </div>
+                </div>
+                <div class="faq_item" data-aos="fade-up">
+                    <button class="faq_question">
+                        What data sources does Area support?
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                    <div class="faq_answer">
+                        <p>Area supports CSV, Excel, Google Sheets, and direct API connections to popular databases and business tools.</p>
+                    </div>
+                </div>
+                <div class="faq_item" data-aos="fade-up">
+                    <button class="faq_question">
+                        How secure is my data?
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                    <div class="faq_answer">
+                        <p>We use enterprise-grade encryption and comply with GDPR and SOC 2 standards to keep your data safe at all times.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+ <footer class="footer">
+        <div class="content-wrap">
+            <nav class="footer_nav">
+                <a href="about.html" class="footer_link">About Us</a>
+                <a href="careers.html" class="footer_link">Careers</a>
+                <a href="contact.html" class="footer_link">Contact</a>
+            </nav>
+            <div class="footer_bottom">
+                <div class="footer_icon">
+                    <svg width="32" height="70" viewBox="0 0 32 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M22.3379 21.5869L31.751 32.6748L27.9258 35.9121L22.3379 29.3125V45H24.8379V70H19.8379V45H17.3379V15H22.3379V21.5869ZM12.4248 44.999L7.83789 69.999H2.75L7.33789 44.999H12.4248ZM4.6748 35.8877L0 34.1123L7.22461 15H12.5752L4.6748 35.8877ZM17.3389 9.9502H12.3389V0H17.3389V9.9502Z" fill="black"/>
+                    </svg>
+                </div>
+                <span class="footer_copy">© Area. 2025</span>
+                <span class="footer_rights">All Rights Reserved</span>
+            </div>
+        </div>
+    </footer>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/contact.js"></script>
+</body>
+</html>

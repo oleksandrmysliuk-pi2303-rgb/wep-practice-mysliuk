@@ -1,0 +1,303 @@
+/* ===== HERO ===== */
+.contact_hero {
+    padding-top: 100px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.contact_label {
+    font-size: 0.75rem;
+    color: var(--color-button);
+    text-transform: capitalize;
+    letter-spacing: 0.05em;
+    display: block;
+    margin-bottom: 16px;
+}
+
+.contact_title {
+    font-size: 2.5rem;
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    color: var(--color-text);
+    margin-bottom: 20px;
+}
+
+.contact_desc {
+    font-size: 1rem;
+    opacity: 0.6;
+    line-height: 1.6;
+    max-width: 600px;
+}
+
+/* ===== MAIN ===== */
+.contact_main {
+    padding: 60px 0;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.contact_inner {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+}
+
+/* Інфо */
+.contact_info {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.contact_info_item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.contact_info_item i {
+    font-size: 1.25rem;
+    color: var(--color-button);
+    margin-top: 2px;
+    width: 20px;
+}
+
+.contact_info_item h3 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 4px;
+}
+
+.contact_info_item p {
+    font-size: 0.9rem;
+    opacity: 0.6;
+}
+
+.contact_socials {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.contact_social {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text);
+    font-size: 1rem;
+    transition: border-color 0.3s, color 0.3s;
+}
+
+.contact_social:hover {
+    border-color: var(--color-button);
+    color: var(--color-button);
+}
+
+/* Форма */
+.contact_form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.contact_field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.contact_field label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-text);
+}
+
+.contact_field input,
+.contact_field textarea {
+    padding: 12px 16px;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-family: inherit;
+    color: var(--color-text);
+    background: var(--color-bg);
+    transition: border-color 0.2s;
+    resize: none;
+}
+
+.contact_field input:focus,
+.contact_field textarea:focus {
+    border-color: var(--color-button);
+}
+
+.contact_error {
+    font-size: 0.75rem;
+    color: #e53e3e;
+    display: none;
+}
+
+.contact_field.has_error input,
+.contact_field.has_error textarea {
+    border-color: #e53e3e;
+}
+
+.contact_field.has_error .contact_error {
+    display: block;
+}
+
+.contact_submit {
+    background-color: var(--color-button);
+    color: var(--color-text-button);
+    border: none;
+    border-radius: 100px;
+    padding: 14px 32px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.3s;
+    width: fit-content;
+}
+
+.contact_submit:hover {
+    opacity: 0.85;
+}
+
+.contact_success {
+    display: none;
+    flex-direction: column;
+    gap: 12px;
+    padding: 24px;
+    border: 1px solid #e5e5e5;
+    border-radius: 16px;
+}
+
+.contact_success i {
+    font-size: 2rem;
+    color: var(--color-button);
+}
+
+.contact_success p {
+    font-size: 1rem;
+    color: var(--color-text);
+}
+
+/* ===== FAQ ===== */
+.contact_faq {
+    padding: 60px 0;
+}
+
+.contact_faq_header {
+    margin-bottom: 40px;
+}
+
+.contact_faq_title {
+    font-size: 2rem;
+    font-weight: 400;
+    letter-spacing: -1px;
+    color: var(--color-text);
+    margin-top: 12px;
+}
+
+.faq_item {
+    border-top: 1px solid #e5e5e5;
+}
+
+.faq_item:last-child {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.faq_question {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+    background: none;
+    border: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--color-text);
+    cursor: pointer;
+    text-align: left;
+    gap: 16px;
+    font-family: inherit;
+}
+
+.faq_question i {
+    font-size: 0.85rem;
+    color: var(--color-button);
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.faq_item.is_open .faq_question i {
+    transform: rotate(45deg);
+}
+
+.faq_answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.faq_item.is_open .faq_answer {
+    max-height: 200px;
+    padding-bottom: 20px;
+}
+
+.faq_answer p {
+    font-size: 0.9rem;
+    opacity: 0.6;
+    line-height: 1.6;
+}
+
+/* ===== ПЛАНШЕТ ===== */
+@media screen and (min-width: 800px) and (max-width: 1279px) {
+    .contact_title {
+        font-size: 3.5rem;
+    }
+
+    .contact_inner {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 60px;
+    }
+
+    .contact_info {
+        flex: 1;
+    }
+
+    .contact_form_wrap {
+        flex: 2;
+    }
+}
+
+/* ===== ДЕСКТОП ===== */
+@media screen and (min-width: 1280px) {
+    .contact_title {
+        font-size: 5rem;
+    }
+
+    .contact_faq_title {
+        font-size: 2.5rem;
+    }
+
+    .contact_inner {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 80px;
+    }
+
+    .contact_info {
+        flex: 1;
+    }
+
+    .contact_form_wrap {
+        flex: 2;
+    }
+}
