@@ -3,6 +3,13 @@ const contactForm = document.getElementById('contactForm');
 const contactSuccess = document.getElementById('contactSuccess');
 
 contactForm.addEventListener('submit', (e) => {
+    const payload = {
+    name: name.value.trim(),
+    email: email.value.trim(),
+    subject: subject.value.trim(),
+    message: message.value.trim(),
+    time: new Date().toLocaleString('uk-UA')
+};
     e.preventDefault();
     let isValid = true;
 
