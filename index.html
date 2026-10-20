@@ -311,6 +311,52 @@
             <h2 class="reviews_title">What Our Users Say</h2>
             <p class="reviews_desc">Thousands of businesses trust Area to make smarter decisions.</p>
         </div>
+
+        <!-- ПОШУК, ФІЛЬТРАЦІЯ, СОРТУВАННЯ -->
+        <div class="reviews_controls" data-aos="fade-up">
+            <div class="reviews_search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input 
+                    type="text" 
+                    id="reviewsSearch" 
+                    placeholder="Search reviews..." 
+                    autocomplete="off"
+                />
+            </div>
+            <div class="reviews_filters">
+                <select id="reviewsRating">
+                    <option value="">All ratings</option>
+                    <option value="5">⭐⭐⭐⭐⭐ 5 stars</option>
+                    <option value="4">⭐⭐⭐⭐ 4 stars</option>
+                    <option value="3">⭐⭐⭐ 3 stars</option>
+                </select>
+                <select id="reviewsSort">
+                    <option value="newest">Newest first</option>
+                    <option value="oldest">Oldest first</option>
+                    <option value="rating_high">Rating: High to Low</option>
+                    <option value="rating_low">Rating: Low to High</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="reviews_grid" id="reviewsGrid"></div>
+
+        <!-- Стан коли нічого не знайдено -->
+        <div class="reviews_empty" id="reviewsEmpty">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <p>No reviews found matching your search.</p>
+            <button class="reviews_reset" id="reviewsReset">Clear filters</button>
+        </div>
+
+    </div>
+</section>
+<section class="reviews" id="reviews">
+    <div class="content-wrap">
+        <div class="reviews_header" data-aos="fade-up">
+            <span class="reviews_label">Testimonials</span>
+            <h2 class="reviews_title">What Our Users Say</h2>
+            <p class="reviews_desc">Thousands of businesses trust Area to make smarter decisions.</p>
+        </div>
         <div class="reviews_grid" id="reviewsGrid">
             <!-- JS генерує картки сюди -->
         </div>

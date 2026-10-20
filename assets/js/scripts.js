@@ -161,6 +161,8 @@ modalForm.addEventListener('submit', (e) => {
 });
 
 // ===== REVIEWS =====
+let allReviews = [];
+
 function renderStars(rating) {
     let stars = '';
     for (let i = 0; i < 5; i++) {
@@ -171,7 +173,19 @@ function renderStars(rating) {
 
 function renderReviews(reviews) {
     const grid = document.getElementById('reviewsGrid');
+    const empty = document.getElementById('reviewsEmpty');
     if (!grid) return;
+
+    if (reviews.length === 0) {
+        grid.innerHTML = '';
+        grid.style.display = 'none';
+        empty.style.display = 'flex';
+        return;
+    }
+
+    grid.style.display = 'grid';
+    empty.style.display = 'none';
+
     grid.innerHTML = reviews.map(review => `
         <div class="review_card" data-aos="fade-up">
             <div class="review_stars">${renderStars(review.rating)}</div>
@@ -198,9 +212,50 @@ function showReviewsError() {
     `;
 }
 
+function filterAndSort() {
+    const search = document.getElementById('reviewsSearch').value.toLowerCase();
+    const rating = document.getElementById('reviewsRating').value;
+    const sort = document.getElementById('reviewsSort').value;
+
+    let filtered = [...allReviews];
+
+    // Пошук
+    if (search) {
+        filtered = filtered.filter(r =>
+            r.text.toLowerCase().includes(search) ||
+            r.name.toLowerCase().includes(search) ||
+            r.role.toLowerCase().includes(search)
+        );
+    }
+
+    // Фільтрація по рейтингу
+    if (rating) {
+        filtered = filtered.filter(r => r.rating === parseInt(rating));
+    }
+
+    // Сортування
+    if (sort === 'newest') {
+        filtered.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+    } else if (sort === 'oldest') {
+        filtered.sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
+    } else if (sort === 'rating_high') {
+        filtered.sort((a, b) => b.rating - a.rating);
+    } else if (sort === 'rating_low') {
+        filtered.sort((a, b) => a.rating - b.rating);
+    }
+
+    renderReviews(filtered);
+    if (typeof AOS !== 'undefined') AOS.refresh();
+}
+
 async function fetchReviews() {
     const grid = document.getElementById('reviewsGrid');
     if (!grid) return;
+
+    if (!supabase) {
+        showReviewsError();
+        return;
+    }
 
     grid.innerHTML = `<div class="reviews_loading">Loading reviews...</div>`;
 
@@ -212,7 +267,8 @@ async function fetchReviews() {
 
         if (error) throw error;
 
-        renderReviews(data);
+        allReviews = data;
+        renderReviews(allReviews);
         if (typeof AOS !== 'undefined') AOS.refresh();
 
     } catch (err) {
@@ -222,3 +278,16 @@ async function fetchReviews() {
 }
 
 fetchReviews();
+
+// Events для пошуку, фільтрації, сортування
+document.getElementById('reviewsSearch').addEventListener('input', filterAndSort);
+document.getElementById('reviewsRating').addEventListener('change', filterAndSort);
+document.getElementById('reviewsSort').addEventListener('change', filterAndSort);
+
+// Кнопка скидання фільтрів
+document.getElementById('reviewsReset').addEventListener('click', () => {
+    document.getElementById('reviewsSearch').value = '';
+    document.getElementById('reviewsRating').value = '';
+    document.getElementById('reviewsSort').value = 'newest';
+    renderReviews(allReviews);
+});

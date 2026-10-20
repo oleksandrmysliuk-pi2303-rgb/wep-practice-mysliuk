@@ -1189,6 +1189,106 @@ ul {
 .reviews_error p {
     font-size: 0.95rem;
 }
+/* REVIEWS CONTROLS */
+.reviews_controls {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 32px;
+}
+
+.reviews_search {
+    position: relative;
+    width: 100%;
+}
+
+.reviews_search i {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-text);
+    opacity: 0.4;
+    font-size: 0.85rem;
+}
+
+.reviews_search input {
+    width: 100%;
+    padding: 12px 16px 12px 40px;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-family: inherit;
+    color: var(--color-text);
+    background: var(--color-bg);
+    transition: border-color 0.2s;
+}
+
+.reviews_search input:focus {
+    border-color: var(--color-button);
+}
+
+.reviews_filters {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.reviews_filters select {
+    flex: 1;
+    min-width: 140px;
+    padding: 12px 16px;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-family: inherit;
+    color: var(--color-text);
+    background: var(--color-bg);
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.reviews_filters select:focus {
+    border-color: var(--color-button);
+}
+
+/* Empty state */
+.reviews_empty {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.reviews_empty i {
+    font-size: 2.5rem;
+    color: var(--color-text);
+    opacity: 0.2;
+}
+
+.reviews_empty p {
+    font-size: 1rem;
+    opacity: 0.5;
+}
+
+.reviews_reset {
+    background: none;
+    border: 1px solid #e5e5e5;
+    border-radius: 100px;
+    padding: 10px 24px;
+    font-size: 0.875rem;
+    cursor: pointer;
+    color: var(--color-text);
+    font-family: inherit;
+    transition: border-color 0.3s, color 0.3s;
+}
+
+.reviews_reset:hover {
+    border-color: var(--color-button);
+    color: var(--color-button);
+}
 /*Медіа для ноубука*/
 @media screen and (min-width: 1280px) {
   .main_header {
@@ -1543,6 +1643,20 @@ ul {
     .reviews_header {
         margin-bottom: 60px;
     }
+      .reviews_controls {
+        flex-direction: row;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .reviews_search {
+        flex: 1;
+    }
+
+    .reviews_filters {
+        flex-wrap: nowrap;
+        gap: 12px;
+    }
 }
 /* Медіа для планшета*/
 @media screen and (min-width: 800px) and (max-width: 1279px) {
@@ -1776,5 +1890,17 @@ ul {
 
     .reviews_title {
         font-size: 2.5rem;
+    }
+        .reviews_controls {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .reviews_search {
+        flex: 1;
+    }
+
+    .reviews_filters {
+        flex-wrap: nowrap;
     }
 }
