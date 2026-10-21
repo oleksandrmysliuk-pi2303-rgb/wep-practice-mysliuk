@@ -1,3 +1,4 @@
+emailjs.init('O4xOacE8p2NSPbINE');
 const supabaseUrl = 'https://wbetohxzimjeajxbdcyg.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndiZXRvaHh6aW1qZWFqeGJkY3lnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTEzOTg1NDgsImV4cCI6MjEwNjk3NDU0OH0.Qr0a5ER0wYoj1-IyvEsKyaUW0oKeni5lVHcC-ZEucwo';
 supabase = window.supabase.createClient(supabaseUrl, SUPABASE_KEY);

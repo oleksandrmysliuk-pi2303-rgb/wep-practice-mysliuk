@@ -43,9 +43,24 @@ contactForm.addEventListener('submit', (e) => {
     }
 
     if (isValid) {
-        contactForm.style.display = 'none';
-        contactSuccess.style.display = 'flex';
-    }
+    const submitBtn = contactForm.querySelector('.contact_submit');
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+
+    emailjs.sendForm('service_72rswzs', 'template_vkuvuq8', contactForm)
+        .then(() => {
+            contactForm.style.display = 'none';
+            contactSuccess.style.display = 'flex';
+            submitBtn.textContent = 'Send Message';
+            submitBtn.disabled = false;
+        })
+        .catch((err) => {
+            console.error('EmailJS error:', err);
+            submitBtn.textContent = 'Send Message';
+            submitBtn.disabled = false;
+            alert('Failed to send message. Please try again.');
+        });
+}
 });
 
 // ===== FAQ ACCORDION =====
