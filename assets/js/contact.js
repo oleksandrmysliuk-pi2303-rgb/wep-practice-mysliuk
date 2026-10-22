@@ -1,3 +1,4 @@
+emailjs.init('O4xOacE8p2NSPbINE');
 // ===== CONTACT FORM =====
 const contactForm = document.getElementById('contactForm');
 const contactSuccess = document.getElementById('contactSuccess');
