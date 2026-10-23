@@ -347,8 +347,45 @@
             <p>No reviews found matching your search.</p>
             <button class="reviews_reset" id="reviewsReset">Clear filters</button>
         </div>
-
     </div>
+    <div class="reviews_add" data-aos="fade-up">
+    <h3 class="reviews_add_title">Leave a Review</h3>
+    <form class="reviews_add_form" id="addReviewForm" novalidate>
+        <div class="reviews_add_row">
+            <div class="reviews_add_field">
+                <label for="review_name">Your Name *</label>
+                <input type="text" id="review_name" name="review_name" placeholder="John Smith" autocomplete="name" />
+                <span class="reviews_add_error">Please enter your name</span>
+            </div>
+            <div class="reviews_add_field">
+                <label for="review_role">Your Role *</label>
+                <input type="text" id="review_role" name="review_role" placeholder="Marketing Director" autocomplete="off" />
+                <span class="reviews_add_error">Please enter your role</span>
+            </div>
+        </div>
+        <div class="reviews_add_field">
+            <label for="review_text">Your Review *</label>
+            <textarea id="review_text" name="review_text" rows="4" placeholder="Share your experience with Area..."></textarea>
+            <span class="reviews_add_error">Please enter your review (min 20 characters)</span>
+        </div>
+        <div class="reviews_add_field">
+            <label>Rating *</label>
+            <div class="reviews_rating_picker" id="ratingPicker">
+                <i class="fa-regular fa-star" data-value="1"></i>
+                <i class="fa-regular fa-star" data-value="2"></i>
+                <i class="fa-regular fa-star" data-value="3"></i>
+                <i class="fa-regular fa-star" data-value="4"></i>
+                <i class="fa-regular fa-star" data-value="5"></i>
+            </div>
+            <span class="reviews_add_error" id="ratingError">Please select a rating</span>
+        </div>
+        <button type="submit" class="btn reviews_add_btn">Submit Review</button>
+    </form>
+    <div class="reviews_add_success" id="addReviewSuccess">
+        <i class="fa-solid fa-circle-check"></i>
+        <p>Thank you! Your review has been added.</p>
+    </div>
+</div>
 </section>
   </main>
   <footer class="footer">

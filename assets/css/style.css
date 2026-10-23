@@ -1289,6 +1289,128 @@ ul {
     border-color: var(--color-button);
     color: var(--color-button);
 }
+.reviews_add {
+    margin-top: 48px;
+    padding-top: 48px;
+    border-top: 1px solid #e5e5e5;
+}
+
+.reviews_add_title {
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+    color: var(--color-text);
+    margin-bottom: 24px;
+}
+
+.reviews_add_form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 600px;
+}
+
+.reviews_add_row {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.reviews_add_field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.reviews_add_field label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-text);
+}
+
+.reviews_add_field input,
+.reviews_add_field textarea {
+    padding: 12px 16px;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-family: inherit;
+    color: var(--color-text);
+    background: var(--color-bg);
+    transition: border-color 0.2s;
+    resize: none;
+}
+
+.reviews_add_field input:focus,
+.reviews_add_field textarea:focus {
+    border-color: var(--color-button);
+}
+
+.reviews_add_error {
+    font-size: 0.75rem;
+    color: #e53e3e;
+    display: none;
+}
+
+.reviews_add_field.has_error input,
+.reviews_add_field.has_error textarea {
+    border-color: #e53e3e;
+}
+
+.reviews_add_field.has_error .reviews_add_error {
+    display: block;
+}
+
+/* Rating picker */
+.reviews_rating_picker {
+    display: flex;
+    gap: 8px;
+    font-size: 1.5rem;
+    color: #e5e5e5;
+    cursor: pointer;
+}
+
+.reviews_rating_picker i {
+    transition: color 0.2s, transform 0.2s;
+}
+
+.reviews_rating_picker i:hover,
+.reviews_rating_picker i.active {
+    color: var(--color-button);
+    transform: scale(1.1);
+}
+
+.reviews_add_btn {
+    background-color: var(--color-button);
+    color: var(--color-text-button);
+    border: none;
+    border-radius: 100px;
+    padding: 14px 32px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.3s;
+    width: fit-content;
+}
+
+.reviews_add_btn:hover {
+    opacity: 0.85;
+}
+
+.reviews_add_success {
+    display: none;
+    flex-direction: column;
+    gap: 12px;
+    padding: 24px;
+    border: 1px solid #e5e5e5;
+    border-radius: 16px;
+    max-width: 600px;
+}
+
+.reviews_add_success i {
+    font-size: 2rem;
+    color: var(--color-button);
+}
 /*Медіа для ноубука*/
 @media screen and (min-width: 1280px) {
   .main_header {
@@ -1657,6 +1779,18 @@ ul {
         flex-wrap: nowrap;
         gap: 12px;
     }
+
+  .reviews_add_title {
+        font-size: 2rem;
+    }
+
+    .reviews_add_row {
+        flex-direction: row;
+    }
+
+    .reviews_add_row .reviews_add_field {
+        flex: 1;
+    }
 }
 /* Медіа для планшета*/
 @media screen and (min-width: 800px) and (max-width: 1279px) {
@@ -1902,5 +2036,12 @@ ul {
 
     .reviews_filters {
         flex-wrap: nowrap;
+    }
+     .reviews_add_row {
+        flex-direction: row;
+    }
+
+    .reviews_add_row .reviews_add_field {
+        flex: 1;
     }
 }

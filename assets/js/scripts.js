@@ -1,7 +1,13 @@
-
+// ===== SUPABASE =====
 const supabaseUrl = 'https://wbetohxzimjeajxbdcyg.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndiZXRvaHh6aW1qZWFqeGJkY3lnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTEzOTg1NDgsImV4cCI6MjEwNjk3NDU0OH0.Qr0a5ER0wYoj1-IyvEsKyaUW0oKeni5lVHcC-ZEucwo';
-supabase = window.supabase.createClient(supabaseUrl, SUPABASE_KEY);
+
+// Клієнт зберігаємо під іншим іменем, щоб не перезаписувати бібліотеку window.supabase.
+// Якщо CDN не завантажився, сайт все одно працює (меню, слайдери, модалка).
+const supabaseClient = window.supabase
+    ? window.supabase.createClient(supabaseUrl, SUPABASE_KEY)
+    : null;
+
 // ===== BURGER MENU =====
 const menuIcon = document.getElementById('menuIcon');
 const menuIconOpen = document.getElementById('menuIconOpen');
@@ -26,8 +32,9 @@ menuLinks.forEach(link => {
 });
 
 // ===== STICKY HEADER =====
+const header = document.getElementById('header');
+
 window.addEventListener('scroll', () => {
-    const header = document.getElementById('header');
     if (window.innerWidth >= 800) {
         header.classList.toggle('scrolled', window.scrollY > 50);
     }
@@ -58,14 +65,6 @@ prevBtn.addEventListener('click', () => {
     if (current > 0) goToSlide(current - 1);
 });
 
-window.addEventListener('resize', () => {
-    if (window.innerWidth >= 1280) {
-        slider.style.transform = 'none';
-    } else {
-        goToSlide(current);
-    }
-});
-
 // ===== HOWTO SLIDER =====
 const howtoSlider = document.getElementById('howtoSlider');
 const howtoPrev = document.getElementById('howtoPrev');
@@ -86,6 +85,22 @@ howtoNext.addEventListener('click', () => {
 
 howtoPrev.addEventListener('click', () => {
     if (howtoCurrent > 0) howtoGoToSlide(howtoCurrent - 1);
+});
+
+// ===== RESIZE (обидва слайдери + хедер) =====
+window.addEventListener('resize', () => {
+    if (window.innerWidth >= 1280) {
+        slider.style.transform = 'none';
+        howtoSlider.style.transform = 'none';
+    } else {
+        goToSlide(current);
+        howtoGoToSlide(howtoCurrent);
+    }
+
+    // На мобільних ефект sticky-хедера не потрібен
+    if (window.innerWidth < 800) {
+        header.classList.remove('scrolled');
+    }
 });
 
 // ===== AOS =====
@@ -118,6 +133,11 @@ modalClose.addEventListener('click', closeModal);
 
 modalOverlay.addEventListener('click', (e) => {
     if (e.target === modalOverlay) closeModal();
+});
+
+// Закриття модалки клавішею Esc
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modalOverlay.classList.contains('is_open')) closeModal();
 });
 
 modalForm.addEventListener('submit', (e) => {
@@ -163,12 +183,23 @@ modalForm.addEventListener('submit', (e) => {
 // ===== REVIEWS =====
 let allReviews = [];
 
+// Екранування HTML: захист від XSS, бо відгуки вводять сторонні користувачі
+function escapeHTML(str = '') {
+    return String(str).replace(/[&<>"']/g, c => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+    }[c]));
+}
+
 function renderStars(rating) {
-    let stars = '';
+    let starsHtml = '';
     for (let i = 0; i < 5; i++) {
-        stars += `<i class="fa-${i < rating ? 'solid' : 'regular'} fa-star"></i>`;
+        starsHtml += `<i class="fa-${i < rating ? 'solid' : 'regular'} fa-star"></i>`;
     }
-    return stars;
+    return starsHtml;
 }
 
 function renderReviews(reviews) {
@@ -179,22 +210,22 @@ function renderReviews(reviews) {
     if (reviews.length === 0) {
         grid.innerHTML = '';
         grid.style.display = 'none';
-        empty.style.display = 'flex';
+        if (empty) empty.style.display = 'flex';
         return;
     }
 
     grid.style.display = 'grid';
-    empty.style.display = 'none';
+    if (empty) empty.style.display = 'none';
 
     grid.innerHTML = reviews.map(review => `
         <div class="review_card" data-aos="fade-up">
-            <div class="review_stars">${renderStars(review.rating)}</div>
-            <p class="review_text">"${review.text}"</p>
+            <div class="review_stars">${renderStars(Number(review.rating) || 0)}</div>
+            <p class="review_text">"${escapeHTML(review.text)}"</p>
             <div class="review_author">
-                <div class="review_avatar">${review.avatar || '?'}</div>
+                <div class="review_avatar">${escapeHTML(review.avatar || '?')}</div>
                 <div>
-                    <p class="review_name">${review.name}</p>
-                    <p class="review_role">${review.role}</p>
+                    <p class="review_name">${escapeHTML(review.name)}</p>
+                    <p class="review_role">${escapeHTML(review.role)}</p>
                 </div>
             </div>
         </div>
@@ -204,6 +235,7 @@ function renderReviews(reviews) {
 function showReviewsError() {
     const grid = document.getElementById('reviewsGrid');
     if (!grid) return;
+    grid.style.display = 'grid';
     grid.innerHTML = `
         <div class="reviews_error">
             <i class="fa-solid fa-circle-exclamation"></i>
@@ -213,18 +245,22 @@ function showReviewsError() {
 }
 
 function filterAndSort() {
-    const search = document.getElementById('reviewsSearch').value.toLowerCase();
-    const rating = document.getElementById('reviewsRating').value;
-    const sort = document.getElementById('reviewsSort').value;
+    const searchEl = document.getElementById('reviewsSearch');
+    const ratingEl = document.getElementById('reviewsRating');
+    const sortEl = document.getElementById('reviewsSort');
+
+    const search = searchEl ? searchEl.value.trim().toLowerCase() : '';
+    const rating = ratingEl ? ratingEl.value : '';
+    const sort = sortEl ? sortEl.value : 'newest';
 
     let filtered = [...allReviews];
 
     // Пошук
     if (search) {
         filtered = filtered.filter(r =>
-            r.text.toLowerCase().includes(search) ||
-            r.name.toLowerCase().includes(search) ||
-            r.role.toLowerCase().includes(search)
+            (r.text || '').toLowerCase().includes(search) ||
+            (r.name || '').toLowerCase().includes(search) ||
+            (r.role || '').toLowerCase().includes(search)
         );
     }
 
@@ -252,24 +288,25 @@ async function fetchReviews() {
     const grid = document.getElementById('reviewsGrid');
     if (!grid) return;
 
-    if (!supabase) {
+    if (!supabaseClient) {
         showReviewsError();
         return;
     }
 
+    grid.style.display = 'grid';
     grid.innerHTML = `<div class="reviews_loading">Loading reviews...</div>`;
 
     try {
-        const { data, error } = await supabase
+        const { data, error } = await supabaseClient
             .from('reviews')
             .select('*')
             .order('created_at', { ascending: false });
 
         if (error) throw error;
 
-        allReviews = data;
-        renderReviews(allReviews);
-        if (typeof AOS !== 'undefined') AOS.refresh();
+        allReviews = data || [];
+        // Враховуємо поточні пошук, фільтр і сортування
+        filterAndSort();
 
     } catch (err) {
         console.error('Failed to load reviews:', err);
@@ -280,14 +317,148 @@ async function fetchReviews() {
 fetchReviews();
 
 // Events для пошуку, фільтрації, сортування
-document.getElementById('reviewsSearch').addEventListener('input', filterAndSort);
-document.getElementById('reviewsRating').addEventListener('change', filterAndSort);
-document.getElementById('reviewsSort').addEventListener('change', filterAndSort);
+const reviewsSearch = document.getElementById('reviewsSearch');
+const reviewsRating = document.getElementById('reviewsRating');
+const reviewsSort = document.getElementById('reviewsSort');
+const reviewsReset = document.getElementById('reviewsReset');
+
+if (reviewsSearch) reviewsSearch.addEventListener('input', filterAndSort);
+if (reviewsRating) reviewsRating.addEventListener('change', filterAndSort);
+if (reviewsSort) reviewsSort.addEventListener('change', filterAndSort);
 
 // Кнопка скидання фільтрів
-document.getElementById('reviewsReset').addEventListener('click', () => {
-    document.getElementById('reviewsSearch').value = '';
-    document.getElementById('reviewsRating').value = '';
-    document.getElementById('reviewsSort').value = 'newest';
-    renderReviews(allReviews);
+if (reviewsReset) {
+    reviewsReset.addEventListener('click', () => {
+        if (reviewsSearch) reviewsSearch.value = '';
+        if (reviewsRating) reviewsRating.value = '';
+        if (reviewsSort) reviewsSort.value = 'newest';
+        filterAndSort();
+    });
+}
+
+// ===== ADD REVIEW =====
+let selectedRating = 0;
+
+const ratingStars = document.querySelectorAll('.reviews_rating_picker i');
+
+function paintStars(count, withActive) {
+    ratingStars.forEach((s, i) => {
+        s.className = i < count
+            ? `fa-solid fa-star${withActive ? ' active' : ''}`
+            : 'fa-regular fa-star';
+    });
+}
+
+ratingStars.forEach(star => {
+    star.addEventListener('mouseover', () => {
+        paintStars(parseInt(star.dataset.value), false);
+    });
+
+    star.addEventListener('mouseout', () => {
+        paintStars(selectedRating, true);
+    });
+
+    star.addEventListener('click', () => {
+        selectedRating = parseInt(star.dataset.value);
+        paintStars(selectedRating, true);
+    });
 });
+
+const addReviewForm = document.getElementById('addReviewForm');
+const addReviewSuccess = document.getElementById('addReviewSuccess');
+
+// Якщо форми немає в HTML, решта сайту працює як завжди
+if (addReviewForm) {
+    addReviewForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        let isValid = true;
+
+        // Скидаємо помилки
+        addReviewForm.querySelectorAll('.reviews_add_field').forEach(f => {
+            f.classList.remove('has_error');
+        });
+        const ratingError = document.getElementById('ratingError');
+        if (ratingError) ratingError.style.display = 'none';
+
+        const name = document.getElementById('review_name');
+        const role = document.getElementById('review_role');
+        const text = document.getElementById('review_text');
+
+        if (name.value.trim().length < 2) {
+            name.parentElement.classList.add('has_error');
+            isValid = false;
+        }
+
+        if (role.value.trim().length < 2) {
+            role.parentElement.classList.add('has_error');
+            isValid = false;
+        }
+
+        if (text.value.trim().length < 20) {
+            text.parentElement.classList.add('has_error');
+            isValid = false;
+        }
+
+        if (selectedRating === 0) {
+            if (ratingError) ratingError.style.display = 'block';
+            isValid = false;
+        }
+
+        if (!isValid) return;
+
+        if (!supabaseClient) {
+            alert('Failed to submit review. Please try again later.');
+            return;
+        }
+
+        const submitBtn = addReviewForm.querySelector('.reviews_add_btn');
+        submitBtn.textContent = 'Submitting...';
+        submitBtn.disabled = true;
+
+        // Аватар з ініціалів (безпечно для подвійних пробілів)
+        const avatar = name.value.trim()
+            .split(/\s+/)
+            .map(p => p[0].toUpperCase())
+            .join('')
+            .slice(0, 2);
+
+        try {
+            const { error } = await supabaseClient
+                .from('reviews')
+                .insert([{
+                    name: name.value.trim(),
+                    role: role.value.trim(),
+                    text: text.value.trim(),
+                    rating: selectedRating,
+                    avatar: avatar
+                }]);
+
+            if (error) throw error;
+
+            // Показуємо успіх
+            addReviewForm.style.display = 'none';
+            if (addReviewSuccess) addReviewSuccess.style.display = 'flex';
+
+            // Повністю скидаємо форму, щоб можна було додати ще один відгук
+            addReviewForm.reset();
+            selectedRating = 0;
+            paintStars(0, false);
+            submitBtn.textContent = 'Submit Review';
+            submitBtn.disabled = false;
+
+            setTimeout(() => {
+                if (addReviewSuccess) addReviewSuccess.style.display = 'none';
+                addReviewForm.style.display = '';
+            }, 3000);
+
+            // Оновлюємо список відгуків
+            await fetchReviews();
+
+        } catch (err) {
+            console.error('Failed to add review:', err);
+            alert('Failed to submit review. Please try again.');
+            submitBtn.textContent = 'Submit Review';
+            submitBtn.disabled = false;
+        }
+    });
+}
