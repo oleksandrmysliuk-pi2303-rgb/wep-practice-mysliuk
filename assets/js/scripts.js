@@ -8,6 +8,15 @@ const supabaseClient = window.supabase
     ? window.supabase.createClient(supabaseUrl, SUPABASE_KEY)
     : null;
 
+    // ===== PRELOADER =====
+window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader');
+    if (!preloader) return;
+    setTimeout(() => {
+        preloader.classList.add('hidden');
+        setTimeout(() => preloader.remove(), 500);
+    }, 1200);
+});
 // ===== BURGER MENU =====
 const menuIcon = document.getElementById('menuIcon');
 const menuIconOpen = document.getElementById('menuIconOpen');

@@ -1411,6 +1411,51 @@ ul {
     font-size: 2rem;
     color: var(--color-button);
 }
+
+.preloader {
+    position: fixed;
+    inset: 0;
+    background: var(--color-bg);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    transition: opacity 0.5s ease;
+}
+
+.preloader.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.preloader_logo {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-text);
+    letter-spacing: -1px;
+}
+
+.preloader_bar {
+    width: 120px;
+    height: 2px;
+    background: #e5e5e5;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.preloader_progress {
+    height: 100%;
+    width: 0%;
+    background: var(--color-button);
+    border-radius: 2px;
+    animation: preloader_fill 1.2s ease forwards;
+}
+
+@keyframes preloader_fill {
+    to { width: 100%; }
+}
 /*Медіа для ноубука*/
 @media screen and (min-width: 1280px) {
   .main_header {

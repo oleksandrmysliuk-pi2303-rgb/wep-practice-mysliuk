@@ -8,6 +8,15 @@ const menuIconOpen = document.getElementById('menuIconOpen');
 const menuIconClose = document.getElementById('menuIconClose');
 const mainMenu = document.getElementById('mainMenu');
 
+// ===== PRELOADER =====
+window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader');
+    if (!preloader) return;
+    setTimeout(() => {
+        preloader.classList.add('hidden');
+        setTimeout(() => preloader.remove(), 500);
+    }, 1200);
+});
 menuIcon.addEventListener('click', () => {
     menuIconOpen.classList.toggle('d_none');
     menuIconClose.classList.toggle('d_none');
