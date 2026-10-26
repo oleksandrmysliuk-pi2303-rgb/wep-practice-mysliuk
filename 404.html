@@ -6,70 +6,66 @@
     <title>404 — Page Not Found | Area</title>
     <meta name="description" content="Page not found. Return to the Area homepage." />
     <link rel="icon" href="assets/image/icon/logo.ico" type="image/svg+xml" />
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="assets/css/404.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
 </head>
-<header class="main_header" id="header">
-    <div class="navbar">
-    <nav class="content_menu d_flex">
-      <a href="#" class="logo">Area</a>
-      <div  id="menuIcon" class="menu-icon">
-        <div id="menuIconOpen" class="menu-icon-open"><i class="fas fa-bars"></i></div>
-        <div id="menuIconClose" class="menu-icon-close d_none"><i class="fas fa-times"></i></div>
-      </div>
-      <ul  id="mainMenu" class="main_menu">
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="careers.html">Careers</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="#benefits">Benefits</a></li>
-        <li><a href="#specs">Specifications</a></li>
-        <li><a href="#howto">How-to</a></li>
-        <li><a href="#get-started">Get Started</a></li>
-        <button class="theme_toggle" id="themeToggle" aria-label="Toggle theme">
-    <i class="fa-solid fa-moon"></i>
-</button>
-        <button class="btn btn_more btn_mobile modal_open_btn">
-            <span>Learn More</span>
-            <i class="fa-solid fa-arrow-up-right-from-square"></i>
-        </button>
-      </ul> 
-      <button class="btn btn_desktop  modal_open_btn">
-        <span>Learn More</span>
-        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-      </button>
-    </nav>
-    </div>
-  </header>
 <body>
+    <!-- Прелоадер -->
     <div class="preloader" id="preloader">
-    <div class="preloader_logo">Area</div>
-    <div class="preloader_bar">
-        <div class="preloader_progress"></div>
-    </div>
-</div>
-    <div class="page404">
-    <div class="page404_code">404</div>
-    <h1 class="page404_title">Page Not Found</h1>
-    <p class="page404_desc">Sorry, the page you are looking for doesn't exist or has been moved.</p>
-    <a href="index.html" class="page404_btn">Back to Home</a>
-</div>
-<footer class="footer">
-    <div class="content-wrap">
-        <nav class="footer_nav" data-aos="fade-up">
-            <a href="#benefits" class="footer_link">Benefits</a>
-            <a href="#specs" class="footer_link">Specifications</a>
-            <a href="#how-to" class="footer_link">How-to</a>
-        </nav>
-        <div class="footer_bottom" data-aos="fade-up" data-aos-delay="100">
-            <div class="footer_icon">
-                <svg width="32" height="70" viewBox="0 0 32 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M22.3379 21.5869L31.751 32.6748L27.9258 35.9121L22.3379 29.3125V45H24.8379V70H19.8379V45H17.3379V15H22.3379V21.5869ZM12.4248 44.999L7.83789 69.999H2.75L7.33789 44.999H12.4248ZM4.6748 35.8877L0 34.1123L7.22461 15H12.5752L4.6748 35.8877ZM17.3389 9.9502H12.3389V0H17.3389V9.9502Z" fill="black"/>
-                </svg>
-            </div>
-            <span class="footer_copy">© Area. 2025</span>
-            <span class="footer_rights">All Rights Reserved</span>
+        <div class="preloader_logo">Area</div>
+        <div class="preloader_bar">
+            <div class="preloader_progress"></div>
         </div>
     </div>
-</footer>
+
+    <!-- Хедер всередині body -->
+    <header class="main_header" id="header">
+        <div class="navbar">
+            <nav class="content_menu d_flex">
+                <a href="index.html" class="logo">Area</a>
+                <div id="menuIcon" class="menu-icon">
+                    <div id="menuIconOpen" class="menu-icon-open"><i class="fas fa-bars"></i></div>
+                    <div id="menuIconClose" class="menu-icon-close d_none"><i class="fas fa-times"></i></div>
+                </div>
+                <ul id="mainMenu" class="main_menu">
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                     <button class="theme_toggle" id="themeToggle" aria-label="Toggle theme">
+                     <i class="fa-solid fa-moon"></i>
+</button>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Основний контент 404 -->
+    <main>
+        <div class="page404">
+            <div class="page404_code">404</div>
+            <h1 class="page404_title">Page Not Found</h1>
+            <p class="page404_desc">Sorry, the page you are looking for doesn't exist or has been moved.</p>
+            <a href="index.html" class="page404_btn">Back to Home</a>
+        </div>
+    </main>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="content-wrap">
+            <div class="footer_bottom">
+                <div class="footer_icon">
+                    <svg width="32" height="70" viewBox="0 0 32 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M22.3379 21.5869L31.751 32.6748L27.9258 35.9121L22.3379 29.3125V45H24.8379V70H19.8379V45H17.3379V15H22.3379V21.5869ZM12.4248 44.999L7.83789 69.999H2.75L7.33789 44.999H12.4248ZM4.6748 35.8877L0 34.1123L7.22461 15H12.5752L4.6748 35.8877ZM17.3389 9.9502H12.3389V0H17.3389V9.9502Z" fill="black"/>
+                    </svg>
+                </div>
+                <span class="footer_copy">© Area. 2025</span>
+                <span class="footer_rights">All Rights Reserved</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Підключаємо JS, щоб прелоадер ховався -->
+     <script src="assets/js/404.js"></script>
 </body>
 </html>
