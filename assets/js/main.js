@@ -72,3 +72,34 @@ if (themeToggle) {
         updateThemeIcon(next);
     });
 }
+
+// ===== COUNTERS =====
+function animateCounter(el) {
+    const target = parseInt(el.dataset.count);
+    const duration = 4000;
+    const step = target / (duration / 16);
+    let current = 0;
+
+    const timer = setInterval(() => {
+        current += step;
+        if (current >= target) {
+            current = target;
+            clearInterval(timer);
+        }
+        el.textContent = Math.floor(current).toLocaleString();
+    }, 16);
+}
+
+const counters = document.querySelectorAll('.about_stat_num[data-count]');
+if (counters.length > 0) {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounter(entry.target);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    counters.forEach(counter => observer.observe(counter));
+}
