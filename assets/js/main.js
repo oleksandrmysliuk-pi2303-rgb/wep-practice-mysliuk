@@ -76,7 +76,7 @@ if (themeToggle) {
 // ===== COUNTERS =====
 function animateCounter(el) {
     const target = parseInt(el.dataset.count);
-    const duration = 4000;
+    const duration = 4000; // 4 seconds
     const step = target / (duration / 16);
     let current = 0;
 
@@ -103,3 +103,5 @@ if (counters.length > 0) {
 
     counters.forEach(counter => observer.observe(counter));
 }
+
+
