@@ -8,3 +8,16 @@
     --color-button-secondary: #8E9C78; 
     --color-button-third: #DFECC6;
 }
+
+[data-theme="dark"] {
+    --color-bg: #1a1a1a;
+    --color-text: #f0f0f0;
+    --color-text-secondary: #aaaaaa;
+    --color-text-third: #333333;
+    --color-text-button: #ffffff;
+    --color-button: #6a8a1f;
+    --color-button-secondary: #8E9C78;
+    --color-button-third: #2d3d10;
+    --color-border: #333333;
+    --color-card-bg: #2a2a2a;
+}

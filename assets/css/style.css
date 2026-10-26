@@ -13,6 +13,9 @@ body {
   font-family: "DM Sans", serif;
    overflow-x: hidden;
     max-width: 100%;
+    background-color: var(--color-bg); /* ← додай це */
+    color: var(--color-text); /* ← і це */
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 a {
   text-decoration: none;
@@ -113,7 +116,7 @@ ul {
 
 .main_menu li {
   width: 100%;
-  border-bottom: 1px solid #e5e5e5; /* розділювач */
+    border-bottom: 1px solid var(--color-border);
   padding: 20px 0;
 }
 
@@ -296,7 +299,7 @@ ul {
 
 .benefits_item {
     padding: 32px 0;
-    border-top: 1px solid #e5e5e5;
+    border-top: 1px solid var(--color-border);
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -375,7 +378,7 @@ ul {
     display: flex;
     gap: 16px;
     padding: 20px 0;
-    border-top: 1px solid #e5e5e5;
+    border-top: 1px solid var(--color-border);
     font-size: 0.95rem;
     line-height: 1.5;
     color: var(--color-text);
@@ -449,7 +452,7 @@ ul {
     display: flex;
     gap: 16px;
     padding: 20px 0;
-    border-top: 1px solid #e5e5e5;
+   border-top: 1px solid var(--color-border);
     font-size: 0.95rem;
     line-height: 1.5;
     color: var(--color-text);
@@ -543,7 +546,7 @@ ul {
 
 .specs_col {
     min-width: 100%;
-    border: 1px solid #e5e5e5;
+    border: 1px solid var(--color-border);
     border-radius: 12px;
     padding: 0;
     flex-shrink: 0;
@@ -551,14 +554,14 @@ ul {
 
 /* активна колонка — виділена */
 .specs_col_active {
-    border: 2px solid var(--color-text);
+    border: 2px solid var(--color-border);
 }
 
 .specs_col_header {
     font-size: 1.25rem;
     font-weight: 600;
     padding: 24px;
-    border-bottom: 1px solid #e5e5e5;
+   border-bottom: 1px solid var(--color-border);
     text-align: center;
 }
 
@@ -576,7 +579,7 @@ ul {
     align-items: center;
     gap: 10px;
     padding: 18px 24px;
-    border-bottom: 1px solid #e5e5e5;
+    border-bottom: 1px solid var(--color-border);
     font-size: 0.9rem;
 }
 
@@ -608,7 +611,7 @@ ul {
     height: 48px;
     border-radius: 12px;
     border: none;
-    background-color: #f0f0f0;
+    background-color: var(--color-slider-btn);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -630,7 +633,7 @@ ul {
 }
 .testimonial {
     padding: 60px 0;
-    border-top: 1px solid #e5e5e5;
+    border-top: 1px solid var(--color-border);
 }
 
 .testimonial_inner {
@@ -658,7 +661,7 @@ ul {
     display: flex;
     align-items: center;
     gap: 12px;
-    border-top: 1px solid #e5e5e5;
+    border-top: 1px solid var(--color-border);
     padding-top: 20px;
 }
 
@@ -674,7 +677,7 @@ ul {
 }
 .howto {
     padding: 60px 0;
-    border-top: 1px solid #e5e5e5;
+   border-top: 1px solid var(--color-border);
 }
 
 .howto_header {
@@ -695,6 +698,7 @@ ul {
 
 .howto_btn {
     background-color: var(--color-button-third);
+    border-top: 1px solid var(--color-border);
     color: var(--color-text);
     border: none;
     border-radius: 100px;
@@ -719,7 +723,7 @@ ul {
 .howto_col {
     min-width: 100%; /* на мобайлі видно 2 колонки */
     flex-shrink: 0;
-    border-top: 1px solid #e5e5e5;
+    border-top: 1px solid var(--color-border);
     padding: 24px 16px 0 0;
 }
 
@@ -759,7 +763,7 @@ ul {
     height: 48px;
     border-radius: 12px;
     border: none;
-    background-color: #f0f0f0;
+    background-color: var(--color-slider-btn);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -768,7 +772,7 @@ ul {
 }
 
 .howto_btn_next {
-    background-color: var(--color-button-third);
+    border-top: 1px solid var(--color-border);
 }
 
 /* фото */
@@ -786,7 +790,7 @@ ul {
 }
 .connect {
     padding: 80px 0;
-    border-top: 1px solid #e5e5e5;
+    border-top: 1px solid var(--color-border);
     text-align: center;
 }
 
@@ -819,7 +823,7 @@ ul {
 }
 .footer {
     padding: 40px 0;
-    border-top: 1px solid #e5e5e5;
+    border-top: 1px solid var(--color-border);
 }
 
 .footer_nav {
@@ -1062,7 +1066,7 @@ ul {
 }
 .reviews {
     padding: 60px 0;
-    border-top: 1px solid #e5e5e5;
+    border-top: 1px solid var(--color-border)
 }
 
 .reviews_header {
@@ -1103,8 +1107,8 @@ ul {
 
 /* Картка */
 .review_card {
-    background: var(--color-bg);
-    border: 1px solid #e5e5e5;
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border);
     border-radius: 16px;
     padding: 24px;
     display: flex;
@@ -1134,7 +1138,7 @@ ul {
     display: flex;
     align-items: center;
     gap: 12px;
-    border-top: 1px solid #e5e5e5;
+    border-top: 1px solid var(--color-border);
     padding-top: 16px;
 }
 
@@ -1215,12 +1219,12 @@ ul {
 .reviews_search input {
     width: 100%;
     padding: 12px 16px 12px 40px;
-    border: 1px solid #e5e5e5;
+    border: 1px solid var(--color-border);
     border-radius: 10px;
     font-size: 0.9rem;
     font-family: inherit;
     color: var(--color-text);
-    background: var(--color-bg);
+    background: var(--color-input-bg);
     transition: border-color 0.2s;
 }
 
@@ -1238,12 +1242,12 @@ ul {
     flex: 1;
     min-width: 140px;
     padding: 12px 16px;
-    border: 1px solid #e5e5e5;
+    border: 1px solid var(--color-border);
     border-radius: 10px;
     font-size: 0.9rem;
     font-family: inherit;
     color: var(--color-text);
-    background: var(--color-bg);
+    background: var(--color-input-bg);
     cursor: pointer;
     transition: border-color 0.2s;
 }
@@ -1275,7 +1279,7 @@ ul {
 
 .reviews_reset {
     background: none;
-    border: 1px solid #e5e5e5;
+   border: 1px solid var(--color-border);
     border-radius: 100px;
     padding: 10px 24px;
     font-size: 0.875rem;
@@ -1292,7 +1296,7 @@ ul {
 .reviews_add {
     margin-top: 48px;
     padding-top: 48px;
-    border-top: 1px solid #e5e5e5;
+    border-top: 1px solid var(--color-border);
 }
 
 .reviews_add_title {
@@ -1331,12 +1335,12 @@ ul {
 .reviews_add_field input,
 .reviews_add_field textarea {
     padding: 12px 16px;
-    border: 1px solid #e5e5e5;
+   border: 1px solid var(--color-border);
     border-radius: 10px;
     font-size: 0.9rem;
     font-family: inherit;
     color: var(--color-text);
-    background: var(--color-bg);
+    background: var(--color-input-bg);
     transition: border-color 0.2s;
     resize: none;
 }
@@ -1402,7 +1406,7 @@ ul {
     flex-direction: column;
     gap: 12px;
     padding: 24px;
-    border: 1px solid #e5e5e5;
+    border: 1px solid var(--color-border);
     border-radius: 16px;
     max-width: 600px;
 }
@@ -1440,7 +1444,7 @@ ul {
 .preloader_bar {
     width: 120px;
     height: 2px;
-    background: #e5e5e5;
+    background: var(--color-border);
     border-radius: 2px;
     overflow: hidden;
 }
@@ -1456,6 +1460,28 @@ ul {
 @keyframes preloader_fill {
     to { width: 100%; }
 }
+.theme_toggle {
+    background: none;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--color-text);
+    font-size: 0.85rem;
+    transition: border-color 0.3s, color 0.3s;
+    position: relative;
+    z-index: 200;
+}
+
+.theme_toggle:hover {
+    border-color: var(--color-button);
+    color: var(--color-button);
+}
+
 /*Медіа для ноубука*/
 @media screen and (min-width: 1280px) {
   .main_header {
