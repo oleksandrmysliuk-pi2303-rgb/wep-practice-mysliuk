@@ -104,4 +104,83 @@ if (counters.length > 0) {
     counters.forEach(counter => observer.observe(counter));
 }
 
+// ===== MODAL =====
+const modalOverlay = document.getElementById('modalOverlay');
+const modalClose = document.getElementById('modalClose');
+const modalForm = document.getElementById('modalForm');
+const modalSuccess = document.getElementById('modalSuccess');
+const modalOpenBtns = document.querySelectorAll('.modal_open_btn');
 
+if (modalOverlay) {
+    function openModal() {
+        modalOverlay.classList.add('is_open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        modalOverlay.classList.remove('is_open');
+        document.body.style.overflow = '';
+    }
+
+    modalOpenBtns.forEach(btn => btn.addEventListener('click', openModal));
+    modalClose.addEventListener('click', closeModal);
+
+    modalOverlay.addEventListener('click', (e) => {
+        if (e.target === modalOverlay) closeModal();
+    });
+
+    modalForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        let isValid = true;
+
+        const name = document.getElementById('modal_name');
+        const email = document.getElementById('modal_email');
+        const message = document.getElementById('modal_message');
+
+        [name, email, message].forEach(field => {
+            field.parentElement.classList.remove('has_error');
+        });
+
+        if (name.value.trim().length < 2) {
+            name.parentElement.classList.add('has_error');
+            isValid = false;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email.value.trim())) {
+            email.parentElement.classList.add('has_error');
+            isValid = false;
+        }
+
+        if (message.value.trim().length < 10) {
+            message.parentElement.classList.add('has_error');
+            isValid = false;
+        }
+
+        if (isValid) {
+            const submitBtn = modalForm.querySelector('.modal_submit');
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+
+            emailjs.sendForm('service_72rswzs', 'template_vkuvuq8', modalForm)
+                .then(() => {
+                    modalForm.style.display = 'none';
+                    modalSuccess.style.display = 'flex';
+                    submitBtn.textContent = 'Send Message';
+                    submitBtn.disabled = false;
+                    setTimeout(() => {
+                        closeModal();
+                        modalForm.style.display = 'flex';
+                        modalSuccess.style.display = 'none';
+                        modalForm.reset();
+                    }, 2500);
+                })
+                .catch((err) => {
+                    console.error('EmailJS error:', err);
+                    submitBtn.textContent = 'Send Message';
+                    submitBtn.disabled = false;
+                    alert('Failed to send message. Please try again.');
+                });
+        }
+    });
+}

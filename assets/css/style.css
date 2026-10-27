@@ -1395,6 +1395,7 @@ ul {
     cursor: pointer;
     transition: opacity 0.3s;
     width: fit-content;
+    margin-bottom: 16px;
 }
 
 .reviews_add_btn:hover {
