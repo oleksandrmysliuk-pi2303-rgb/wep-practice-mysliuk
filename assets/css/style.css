@@ -1649,8 +1649,17 @@ ul {
     font-weight: bold ;
   }
   .hero_img_mobile {
-    display: none;
-  }
+  display: block;
+  position: relative;
+  top: 70px;
+  margin-top: 10px;
+  width: 1280px;
+  max-width: none;
+  height: 900px;
+  z-index: 1;
+  border: 10px solid #000000;
+  border-radius: 40px;
+}
   .hero_img_table{
     display: none;
   }
@@ -2008,8 +2017,15 @@ ul {
   }
 
   .hero_img_mobile {
-    display: none;
-  }
+  display: block;
+  width: 900px;
+  max-width: none;
+  height: auto;
+  border: 10px solid #000;
+  border-radius: 20px;
+  position: relative;
+  top: 18px;
+}
   .hero_img_desktop{
     display: none;
   }

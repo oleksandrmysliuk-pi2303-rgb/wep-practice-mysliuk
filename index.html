@@ -60,9 +60,23 @@
       <h1 class="hero_title" data-aos="fade-up">Browse everything.</h1>
       <div class="hero_image" data-aos="fade-up" data-aos-delay="200">
         <div class="hero_bg_box"></div>
-        <img class="hero_img_mobile" src="assets/image/Inner_screen_mobili.png" alt="App screenshot" />
-        <img class="hero_img_desktop" src="assets/image/Inner_screen_desktop.png" alt="App" />
-        <img class="hero_img_table" src="assets/image/Inner_screen_pln.png" alt="App table" />
+        <picture>
+  <source
+    media="(min-width: 1280px)"
+    srcset="assets/image/Inner_screen_desktop.png"
+  />
+  <source
+    media="(min-width: 800px)"
+    srcset="assets/image/Inner_screen_pln.png"
+  />
+  <img
+    class="hero_img_mobile"
+    src="assets/image/Inner_screen_mobili.webp"
+    alt="App screenshot"
+    fetchpriority="high"
+    decoding="async"
+  />
+</picture>
       </div>
     </section>
   <div>
