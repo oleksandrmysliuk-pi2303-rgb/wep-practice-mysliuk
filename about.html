@@ -54,8 +54,7 @@
         </div>
     </header>
 
-    <main>
-       <main>
+<main>
     <!-- HERO -->
     <section class="about_hero">
         <div class="content-wrap">
@@ -165,9 +164,38 @@
             </div>
         </div>
     </section>
+    <div class="modal_overlay" id="modalOverlay">
+    <div class="modal">
+        <button class="modal_close" id="modalClose">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <h2 class="modal_title">Get in Touch</h2>
+        <p class="modal_desc">Leave your details and we'll get back to you as soon as possible.</p>
+        <form class="modal_form" id="modalForm" novalidate>
+            <div class="modal_field">
+                <label for="modal_name">Name *</label>
+                <input type="text" id="modal_name" name="name" placeholder="Your name" autocomplete="name" />
+                <span class="modal_error" id="nameError">Please enter your name</span>
+            </div>
+            <div class="modal_field">
+                <label for="modal_email">Email *</label>
+                <input type="email" id="modal_email" name="email" placeholder="your@email.com" autocomplete="email" />
+                <span class="modal_error" id="emailError">Please enter a valid email</span>
+            </div>
+            <div class="modal_field">
+                <label for="modal_message">Message *</label>
+                <textarea id="modal_message" name="message" rows="4" placeholder="Your message..." autocomplete="off"></textarea>
+                <span class="modal_error" id="messageError">Please enter your message</span>
+            </div>
+            <button type="submit" class="modal_submit">Send Message</button>
+        </form>
+        <div class="modal_success" id="modalSuccess">
+            <i class="fa-solid fa-circle-check"></i>
+            <p>Thank you! We'll get back to you shortly.</p>
+        </div>
+    </div>
+</div>
 </main>
-    </main>
-
     <footer class="footer">
         <div class="content-wrap">
             <nav class="footer_nav">
